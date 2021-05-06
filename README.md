@@ -5,8 +5,8 @@ Website: TheBookShelf.com
 Purpose: This is a community based book review website. You can log on to see recently reviewed books, top rated books, and to search for an obscure book to see if anyone else has read it. To leave a review, you must login to the website. When leaving a review, you have the option to leave your location via Google Geolocation API. Then, someone else reading that review can see if you're close and arrange a book pickup!
 
 We defined our team as:
-Hannah- Designer
-Rory- Developer
+Hannah- Designer; 
+Rory- Developer; 
 Dominick- Database Admin and Developer
 
 Hope you enjoy!
