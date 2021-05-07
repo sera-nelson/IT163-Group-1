@@ -30,7 +30,7 @@ include('includes/server.php');
 
             <div class="box">
                 <button type="submit" class="button is-primary" name="login_user">Login</button>
-                <p class="subtitle">No account?<a href="register.php">Register Here</a></p>
+                <p class="subtitle">No account? <a href="register.php">Register Here</a></p>
             </div>
 
         </fieldset>   

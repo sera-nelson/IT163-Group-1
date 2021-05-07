@@ -1,5 +1,4 @@
 <?php 
-include('includes/header.php'); 
 include('includes/LoginCheck.php'); 
 ?>
 <!DOCTYPE html>

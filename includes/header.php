@@ -8,6 +8,7 @@ if(isset($_GET['logout'])){
 }
 ?>
 
+    <?php//login/logout info?>
        <section class="rightnavlog"> 
     
 <?php 
@@ -32,4 +33,3 @@ if(isset($_SESSION['success'])): ?>
 </div>
 <?php endif ?>
     </section>
-
