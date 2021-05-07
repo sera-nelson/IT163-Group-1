@@ -13,6 +13,7 @@ $Title = '';
 $Author = '';
 $Genre = '';
 
+$message = '';
 
 $errors = array();
 $success = 'Logged in';
@@ -127,23 +128,117 @@ if(isset($_POST['reg_book'])){ //reads the info in the text boxes on the addbook
 
 
     $result = @mysqli_query($db, $user_check_query);
-
+    $iConn = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) //gets the database credential info
+            or die(myerror(__FILE__,__LINE__,mysqli_connect_error()));
+    
     if(count($errors) == 0){ //if there are no errors it adds the new book
+        $Bookquery = "SELECT * FROM BookList WHERE Title = '$Title'";
+        $BQR = mysqli_query($iConn,$Bookquery) or die(myerror(__FILE__,__LINE__,mysqli_error($iConn)));
 
-
-        $query = "INSERT INTO BookList (AuthorID, GenreID, Title) VALUES ('$Author', '$Genre', '$Title') "; //adds the book to the database
-
-        $Aquery = "INSERT INTO AuthorList (Name) VALUES ('$AuthorName') ";
+        $Authquery = "SELECT * FROM AuthorList WHERE Name='$AuthorName'";
+        $AQR = mysqli_query($iConn,$Authquery) or die(myerror(__FILE__,__LINE__,mysqli_error($iConn)));
         
+        $Genquery = "SELECT * FROM GenreList WHERE Genre='$GenreName'";
+        $GQR = mysqli_query($iConn,$Genquery) or die(myerror(__FILE__,__LINE__,mysqli_error($iConn)));
+        
+        $query = "INSERT INTO BookList (AuthorID, GenreID, Title) VALUES ('$Author', '$Genre', '$Title') "; //adds the book to the database
+        $Aquery = "INSERT INTO AuthorList (Name) VALUES ('$AuthorName') ";
         $Gquery = "INSERT INTO GenreList (Genre) VALUES ('$GenreName') ";
         
-        mysqli_query($db, $query);
-        mysqli_query($db, $Aquery);
-        mysqli_query($db, $Gquery);
-        $_SESSION['UserName'] = $UserName;
-        $_SESSION['success'] = $success;
-        echo ''.$Title.' has been added!';
-        echo "<br>";
-
+        
+        if(mysqli_num_rows($BQR) > 0){//title check
+            $message .= "<p>".$Title." already exists";
+        //TITLE WAS NOT NEW, CHECK AUTHOR
+                if(mysqli_num_rows($AQR) > 0){//author name check
+                    $message .= ", as well as author: ".$AuthorName."";
+                //AUTHOR WAS NOT NEW, CHECK GENRE
+                        if(mysqli_num_rows($GQR) > 0){
+                            $_SESSION['UserName'] = $UserName;
+                            $_SESSION['success'] = $success;
+                            $message .= " and genre: ".$GenreName.".</p>";
+                            $message .= "<p>Keep adding new books!</p>";
+                            echo $message;
+                            echo "<br>";
+                        }else{
+                            mysqli_query($db, $Gquery);
+                            $_SESSION['UserName'] = $UserName;
+                            $_SESSION['success'] = $success;
+                            $message .= ", but genre: ".$GenreName." is new, and will be added to our system!";
+                            echo $message;
+                            echo "<br>";
+                        }//genre else end
+                 
+                    }else{//insert author name $ author name check end
+                        $message .= ", but not author: ".$AuthorName."";
+                    //AUTHOR WAS NEW, CHECK GENRE  
+                            if(mysqli_num_rows($GQR) > 0){
+                            mysqli_query($db, $Aquery);
+                            $_SESSION['UserName'] = $UserName;
+                            $_SESSION['success'] = $success;
+                            $message .= "! Genre: ".$GenreName." does exist already though.</p>";
+                             $message .= "<p>".$AuthorName." will be added to our system!</p>";
+                            $message .= "<p>Keep adding new books!</p>";
+                            echo $message;
+                            echo "<br>";
+                        }else{
+                            mysqli_query($db, $Aquery);
+                            mysqli_query($db, $Gquery);
+                            $_SESSION['UserName'] = $UserName;
+                            $_SESSION['success'] = $success;
+                            $message .= " or genre: ".$GenreName.", and they will be added to our system!";
+                            echo $message;
+                            echo "<br>";
+                        }//genre else end
+                    }//author else end
+            
+        }else{//insert book $ title check end
+            $message .= "<p>".$Title." has been added";
+        //TITLE WAS NEW, CHECK AUTHOR
+                if(mysqli_num_rows($AQR) > 0){//author name check
+                   $message .= ", with author: ".$AuthorName."";
+                //AUTHOR WAS NOT NEW, CHECK GENRE
+                        if(mysqli_num_rows($GQR) > 0){//genre type check
+                            mysqli_query($db, $query);
+                            $_SESSION['UserName'] = $UserName;
+                            $_SESSION['success'] = $success;
+                            $message .= ", and genre: ".$GenreName.".</p>";
+                            echo $message;
+                            echo "<br>";
+                        }else{//insert genre type $ genre type check end
+                            mysqli_query($db, $query);
+                            mysqli_query($db, $Gquery);
+                            $_SESSION['UserName'] = $UserName;
+                            $_SESSION['success'] = $success;
+                            $message .= ", and genre: ".$GenreName.".</p>";
+                            $message .= "".$GenreName." is new, and will be added to our system!";
+                            echo $message;
+                            echo "<br>";
+                        }//genre else end
+                    
+                }else{//insert author name $ author name check end
+                    $message .= ", with author: ".$AuthorName."";
+                //AUTHOR WAS NEW, CHECK GENRE
+                        if(mysqli_num_rows($GQR) > 0){//genre type check
+                            mysqli_query($db, $query);
+                            mysqli_query($db, $Aquery);
+                            $_SESSION['UserName'] = $UserName;
+                            $_SESSION['success'] = $success;
+                            $message .= ", and genre: ".$GenreName.".</p>";
+                            $message .= "".$AuthorName." was new, and will be added to our system!";
+                            echo $message;
+                            echo "<br>";
+                        }else{//insert genre type $ genre type check end
+                            mysqli_query($db, $query);
+                            mysqli_query($db, $Aquery);
+                            mysqli_query($db, $Gquery);
+                            $_SESSION['UserName'] = $UserName;
+                            $_SESSION['success'] = $success;
+                            $message .= ", and genre: ".$GenreName.".</p>";
+                            $message .= "".$AuthorName." and ".$GenreName." are new, and will be added to our system!";
+                            echo $message;
+                            echo "<br>";
+                        }//genre else end
+                }//author else end
+        }//title else end
     }//count
 }//isset
