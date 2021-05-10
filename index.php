@@ -1,29 +1,16 @@
 <?php include('includes/header.php'); ?>
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>Home</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    </head>
-    <body>
-        <section class="hero is-success is-halfheight">
+<hr>
+
+
+
+<section class="hero is-success is-halfheight">
             <div class="hero-body">
                 <div>
-                    <p class="title">Hero</p>
-                    <p class="subtitle">Some more text</p>
+                    <p class="title">The Bookshelf</p>
+                    <p class="subtitle">Books and Reviews By And For You!</p>
                 </div>
             </div>
         </section>
-        <section class="section">
-            <div class="container">
-                <h1 class="title">Bulma Testing</h1>
-                <p class="subtitle">My first site with <strong>Bulma!</strong></p>
-            </div>
-        </section>
-
             <div class="columns">
                 <div class="column is-half has-background-warning m-1">1</div>
                 <div class="column has-background-warning m-1">2</div>
@@ -110,15 +97,3 @@
         </script>
     </body>
 </html>
-© 2021 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
