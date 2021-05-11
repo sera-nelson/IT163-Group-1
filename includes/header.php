@@ -70,8 +70,7 @@ switch($page) {
         <header>
             <p>LOGO</p>
             <p class="subtitle">The Bookshelf | Books and Reviews By and For You!</p>
-            <a href="login.php">Log In</a>
-            <a href="register.php">Register</a>
+            <?php include('loginHeader.php'); ?>
             <p id="styleToggle">Toggle Dark Mode</p>
             <nav>
                 <ul>
@@ -83,23 +82,17 @@ switch($page) {
                 </ul>
             </nav>
         </header>
-
-        <section class="rightnavlog">     
-            <?php if(isset($_SESSION['success'])): ?>
-                <div class="error success">
-                    <p><?php
-                            echo $_SESSION['success'];
-                            unset($_SESSION['success']);
-                        ?></p>
-                </div>
-            <?php endif ?>
-            <div class="error success">
-                <?php if(isset($_SESSION['UserName'])): ?>
-                    <h3>Welcome, 
-                        <?php echo $_SESSION['UserName']; ?>
-                    </h3>
-                    <p><a href="index.php?logout='1'">Log Out</a></p>
-                <?php endif ?>
-            </div>
-        </section>
-        <h1><?php echo $heading; ?></h1>
+<h1><?php echo $heading; ?></h1>
+        
+© 2021 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
