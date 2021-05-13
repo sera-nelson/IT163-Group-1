@@ -242,3 +242,38 @@ if(isset($_POST['reg_book'])){ //reads the info in the text boxes on the addbook
         }//title else end
     }//count
 }//isset
+
+if(isset($_POST['reg_review'])){
+//    $GetName = $_SESSION['UserName'];
+//    $UserNameQ = "SELECT * FROM Users WHERE UserName = '$GetName'";
+//    $result = $db_handle->runQuery($UserNameQ);
+//    foreach($result as $uname) {
+//        $UQR = $uname['UserID'];
+//    }
+    if($_POST['Recc'] == 'Yes'){
+        $Yes = "Yes";
+        $Recc = @mysqli_real_escape_string($db, $Yes);
+    }else{
+        $No = "No";
+        $Recc = @mysqli_real_escape_string($db, $No);
+    }
+//    $ReviewerName = @mysqli_real_escape_string($db, $UQR);
+    $Book = @mysqli_real_escape_string($db, $_POST['bookID']);
+    $Rating = @mysqli_real_escape_string($db, $_POST['Rating']);
+    $Review = @mysqli_real_escape_string($db, $_POST['Review']);
+
+    if(empty($Book)){
+        array_push($errors, 'Book Title is required');
+    }
+    if(empty($Rating)){
+        array_push($errors, 'User Name is required');
+    }
+    
+    
+    
+    $query = "INSERT INTO ReviewList (BookID, Rating, Reccomend, Review) VALUES ('$Book', '$Rating', '$Recc', '$Review') ";
+    
+    mysqli_query($db, $query);
+    $_SESSION['UserName'] = $UserName;
+    $_SESSION['success'] = $success;
+}

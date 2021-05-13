@@ -1,7 +1,7 @@
 <?php 
-include('includes/LoginCheck.php');
 include('includes/header.php');
 ?>
+<script src="/node_modules/bulma-extensions/bulma-slider/dist/bulma-slider.min.js"></script>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -13,32 +13,44 @@ include('includes/header.php');
     </head>
     <body>
         <div class="container">
-            <h1 class="title">Add a New Book</h1>
+            <h1 class="title">Review a Book</h1>
         </div>
 
         <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
 
             <fieldset>
 
-            <label>Title</label>
-            <input class="input is-small" type="text" name="Title" placeholder="Title" value="<?php if(isset($_POST['Title'])) echo $_POST['Title']; ?>">
-
-            <div class="frmSearch">
-                <label>Author</label>
-                <input id="search-box" class="input is-small" type="text" name="Author" placeholder="Author" value="<?php if(isset($_POST['Author'])) echo $_POST['Author']; ?>">
-                <input type="hidden" id="authorID" name="authorID" value="<?php if(isset($_POST['authorID'])) echo $_POST['authorID']; ?>">
-                <div id="suggesstion-box" class="box"></div>
-            </div>
-
-            <div class="frmSearchGenre">
-                <label>Genre </label>
-                <input id="search-box-genre" class="input is-small" type="text" name="Genre" placeholder="Genre" value="<?php if(isset($_POST['Genre'])) echo $_POST['Genre']; ?>">
-                <input type="hidden" id="genreID" name="genreID" value="<?php if(isset($_POST['genreID'])) echo $_POST['genreID']; ?>">
-                <div id="suggesstion-box-genre" class="box"></div>
-            </div>
+            <div class="frmSearchBook">
+                <label>Book </label>
+                <input id="search-box-book" class="input is-small" type="text" name="Book" placeholder="Book Title" value="<?php if(isset($_POST['Book'])) echo $_POST['Book']; ?>">
+                <input type="hidden" id="bookID" name="bookID" value="<?php if(isset($_POST['bookID'])) echo $_POST['bookID']; ?>">
+                <div id="suggesstion-box-book" class="box"></div>
+            </div><br>
+              
+            
+            <label>Rating</label>
+                <label>1</label>
+                <input class="slider has-output-tooltip is-fullwidth" id="Rating" step="0.5" min="1" max="5" value="50" type="range" name="Rating">
+                <label>5</label>
+                <br><br>
+            <div class="control">
+            <label>Would you reccomend this book to a friend?</label><br>
+                <label class="radio">
+                <input type="radio" name="Recc" value="Yes" checked>
+                    Yes
+                </label>
+                
+                <label class="radio">
+                <input type="radio" name="Recc" value="No">
+                    No
+                </label>
+                <br><br>
+            </div>  
+            <label>Review</label>
+                <textarea class="textarea" name="Review" placeholder="Leave your review here!" rows="8" style="width:600px;" value="<?php if(isset($_POST['Review'])) echo $_POST['Review']; ?>"></textarea>
                 
             <div class="box">
-                <button type="submit" class="button is-primary" name="reg_book">Add Book</button>
+                <button type="submit" class="button is-primary" name="reg_review">Submit Review</button>
                 
                 <p class="subtitle">See all of our books<a href="BookList.php"> here</a></p>
             </div>
@@ -86,14 +98,13 @@ include('includes/header.php');
                 </div>
             </div>
         <script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
+        
         <script>
             let drop = document.querySelector('.dropdown');
             drop.addEventListener('click', (event) => {
                 event.stopPropagation();
                 drop.classList.toggle('is-active');
             });
-
-
 
             let modal = document.querySelector('.modal-trigger');
             let pop = document.querySelector('.modal');
@@ -120,53 +131,29 @@ include('includes/header.php');
                 }
             });
         </script>
-        <script> //For Author
+
+        <script> //For Book
             $(document).ready(function(){
-                $("#search-box").keyup(function(){
+                $("#search-box-book").keyup(function(){
                     $.ajax({
                     type: "POST",
-                    url: "includes/readName.php",
-                    data:'keyword='+$(this).val(),
+                    url: "includes/readTitle.php",
+                    data:'bookkeyword='+$(this).val(),
                     success: function(data){
-                        $("#suggesstion-box").show();
-                        $("#suggesstion-box").html(data);
-                        $("#search-box").css("background","#FFF");
+                        $("#suggesstion-box-book").show();
+                        $("#suggesstion-box-book").html(data);
+                        $("#search-box-book").css("background","#FFF");
                     }
                     });
                 });
             });
 
-            function selectName(val) {
-            $("#search-box").val(val);
-            $("#suggesstion-box").hide();
+            function selectBook(val) {
+            $("#search-box-book").val(val);
+            $("#suggesstion-box-book").hide();
             }
-            function nameID(val) {
-            $("#authorID").val(val);
-            }
-        </script>
-
-        <script> //For Genre
-            $(document).ready(function(){
-                $("#search-box-genre").keyup(function(){
-                    $.ajax({
-                    type: "POST",
-                    url: "includes/readGenre.php",
-                    data:'genrekeyword='+$(this).val(),
-                    success: function(data){
-                        $("#suggesstion-box-genre").show();
-                        $("#suggesstion-box-genre").html(data);
-                        $("#search-box-genre").css("background","#FFF");
-                    }
-                    });
-                });
-            });
-
-            function selectGenre(val) {
-            $("#search-box-genre").val(val);
-            $("#suggesstion-box-genre").hide();
-            }
-            function genreID(val) {
-            $("#genreID").val(val);
+            function bookID(val) {
+            $("#bookID").val(val);
             }
         </script>
 

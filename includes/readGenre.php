@@ -2,7 +2,7 @@
 require_once("dbcontroller.php");
 $db_handle = new DBController();
 if(!empty($_POST["genrekeyword"])) {
-$query ="SELECT * FROM GenreList WHERE Genre like '" . $_POST["genrekeyword"] . "%' ORDER BY Genre LIMIT 0,6";
+$query ="SELECT * FROM GenreList WHERE Genre LIKE '" . $_POST["genrekeyword"] . "%' ORDER BY Genre LIMIT 0,6";
 $result = $db_handle->runQuery($query);
 if(!empty($result)) {
 ?>

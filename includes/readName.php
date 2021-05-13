@@ -2,7 +2,7 @@
 require_once("dbcontroller.php");
 $db_handle = new DBController();
 if(!empty($_POST["keyword"])) {
-$query ="SELECT * FROM AuthorList WHERE Name like '" . $_POST["keyword"] . "%' ORDER BY Name LIMIT 0,6";
+$query ="SELECT * FROM AuthorList WHERE Name LIKE '" . $_POST["keyword"] . "%' ORDER BY Name LIMIT 0,6";
 $result = $db_handle->runQuery($query);
 if(!empty($result)) {
 ?>
