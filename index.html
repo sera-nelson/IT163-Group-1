@@ -11,18 +11,11 @@
         <section class="hero is-success is-halfheight">
             <div class="hero-body">
                 <div>
-                    <p class="title">Hero</p>
-                    <p class="subtitle">Some more text</p>
+                    <p class="title">The Bookshelf</p>
+                    <p class="subtitle">Books and Reviews By And For You!</p>
                 </div>
             </div>
         </section>
-        <section class="section">
-            <div class="container">
-                <h1 class="title">Bulma Testing</h1>
-                <p class="subtitle">My first site with <strong>Bulma!</strong></p>
-            </div>
-        </section>
-
             <div class="columns">
                 <div class="column is-half has-background-warning m-1">1</div>
                 <div class="column has-background-warning m-1">2</div>
@@ -62,9 +55,11 @@
                 </div>
                 <div class="dropdown-menu" id="dropdown-menu3" role="menu">
                     <div class="dropdown-content">
-                        <a href="" class="dropdown-item">Home</a>
+                        <a href="index.php" class="dropdown-item">Home</a>
+                        <a href="login.php" class="dropdown-item">Login</a>
                         <a href="" class="dropdown-item">Reviews</a>
-                        <a href="" class="dropdown-item">Books</a>
+                        <a href="BookList.php" class="dropdown-item">Books</a>
+                        <a href="NewBook.php" class="dropdown-item">Add a Book</a>
                     </div>
                 </div>
             </div>
@@ -77,8 +72,6 @@
                 event.stopPropagation();
                 drop.classList.toggle('is-active');
             });
-
-
 
             let modal = document.querySelector('.modal-trigger');
             let pop = document.querySelector('.modal');

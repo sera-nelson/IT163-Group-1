@@ -1,17 +1,7 @@
 <?php 
-include('includes/header.php'); 
 include('includes/config.php');
+include('includes/header.php'); 
 ?>
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>Add a Book</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    </head>
-    <body>
     <div class="dropdown">
         <div class="dropdown-trigger">
             <button class="button is-dark" aria-haspopup="true" aria-controls="dropdown-menu3">
@@ -105,15 +95,3 @@ include('includes/config.php');
         </script>
     </body>
 </html>
-© 2021 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
