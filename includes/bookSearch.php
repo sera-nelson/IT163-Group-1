@@ -9,7 +9,7 @@
             <option value="TitleParam" <?php echo (isset($_POST['SearchParams']) && $_POST['SearchParams'] == 'TitleParam') ? 'selected' : ''; ?>>Title</option>
             <option value="AuthorParam" <?php echo (isset($_POST['SearchParams']) && $_POST['SearchParams'] == 'AuthorParam') ? 'selected' : ''; ?>>Author</option>
             <option value="GenreParam" <?php echo (isset($_POST['SearchParams']) && $_POST['SearchParams'] == 'GenreParam') ? 'selected' : ''; ?>>Genre</option>
-            <option value="">Review (PLACEHOLDER)</option>
+<!--            <option value="">Review (PLACEHOLDER)</option>-->
           </select>
         </div>
 </form>
@@ -26,6 +26,12 @@ if(isset($_POST['searchBook'])){
                 echo '<p></p>';
                 while($rowA = mysqli_fetch_array($resultA)){
                         echo'<div class="box">';
+                        $coverImg = $rowA['CoverPic'];
+                            if($coverImg == 'NULL'){
+                                echo '<img src="images/noImg.png" alt="'.$rowA['Title'].'">';
+                            }else{
+                                echo '<img src="'.$rowA['CoverPic'].'" alt="'.$rowA['Title'].'">';
+                            }
                         echo '<ul>';
                         echo '<li><b>Title:</b> '.$rowA['Title'].' </li>';
                         echo '<li><b>Author:</b> '.$rowA['Name'].' </li>';
@@ -42,6 +48,12 @@ if(isset($_POST['searchBook'])){
                 echo '<p></p>';
                 while($rowG = mysqli_fetch_array($resultG)){
                         echo'<div class="box">';
+                        $coverImg = $rowA['CoverPic'];
+                                if($coverImg == 'NULL'){
+                                    echo '<img src="images/noImg.png" alt="'.$rowA['Title'].'">';
+                                }else{
+                                    echo '<img src="'.$rowA['CoverPic'].'" alt="'.$rowA['Title'].'">';
+                                }
                         echo '<ul>';
                         echo '<li><b>Title:</b> '.$rowG['Title'].' </li>';
                         echo '<li><b>Author:</b> '.$rowG['Name'].' </li>';
@@ -58,6 +70,12 @@ if(isset($_POST['searchBook'])){
                 echo '<p></p>';
                 while($rowT = mysqli_fetch_array($resultT)){
                         echo'<div class="box">';
+                        $coverImg = $rowA['CoverPic'];
+                            if($coverImg == 'NULL'){
+                                echo '<img src="images/noImg.png" alt="'.$rowA['Title'].'">';
+                            }else{
+                                echo '<img src="'.$rowA['CoverPic'].'" alt="'.$rowA['Title'].'">';
+                            }
                         echo '<ul>';
                         echo '<li><b>Title:</b> '.$rowT['Title'].' </li>';
                         echo '<li><b>Author:</b> '.$rowT['Name'].' </li>';

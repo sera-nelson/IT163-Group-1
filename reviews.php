@@ -6,7 +6,7 @@ include('includes/header.php');
     <div class="content">
         
         <?php
-        include('includes/bookSearch.php');
+        include('includes/reviewSearch.php');
 
         ?>
         <aside>
