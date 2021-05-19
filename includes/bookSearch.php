@@ -18,7 +18,7 @@
 if(isset($_POST['searchBook'])){
     if (!empty($_REQUEST['search'])) {
         if(isset($_POST['SearchParams'])){
-            if($_POST['SearchParams'] == 'AuthorParam'){
+            if($_POST['SearchParams'] == 'AuthorParam'){ 
                 $sqlA = "SELECT b.*, a.Name, g.Genre FROM BookList b INNER JOIN AuthorList a ON b.AuthorID=a.AuthorID INNER JOIN GenreList g ON b.GenreID=g.GenreID WHERE a.Name LIKE '%".$_POST['search']."%'"; 
                 $iConn = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) //gets the database credential info
                     or die(myerror(__FILE__,__LINE__,mysqli_connect_error()));
@@ -48,12 +48,12 @@ if(isset($_POST['searchBook'])){
                 echo '<p></p>';
                 while($rowG = mysqli_fetch_array($resultG)){
                         echo'<div class="box">';
-                        $coverImg = $rowA['CoverPic'];
-                                if($coverImg == 'NULL'){
-                                    echo '<img src="images/noImg.png" alt="'.$rowA['Title'].'">';
-                                }else{
-                                    echo '<img src="'.$rowA['CoverPic'].'" alt="'.$rowA['Title'].'">';
-                                }
+                        $coverImg = $rowG['CoverPic'];
+                            if($coverImg == 'NULL'){
+                                echo '<img src="images/noImg.png" alt="'.$rowG['Title'].'">';
+                            }else{
+                                echo '<img src="'.$rowG['CoverPic'].'" alt="'.$rowG['Title'].'">';
+                            }
                         echo '<ul>';
                         echo '<li><b>Title:</b> '.$rowG['Title'].' </li>';
                         echo '<li><b>Author:</b> '.$rowG['Name'].' </li>';
@@ -70,11 +70,11 @@ if(isset($_POST['searchBook'])){
                 echo '<p></p>';
                 while($rowT = mysqli_fetch_array($resultT)){
                         echo'<div class="box">';
-                        $coverImg = $rowA['CoverPic'];
+                        $coverImg = $rowT['CoverPic'];
                             if($coverImg == 'NULL'){
-                                echo '<img src="images/noImg.png" alt="'.$rowA['Title'].'">';
+                                echo '<img src="images/noImg.png" alt="'.$rowT['Title'].'">';
                             }else{
-                                echo '<img src="'.$rowA['CoverPic'].'" alt="'.$rowA['Title'].'">';
+                                echo '<img src="'.$rowT['CoverPic'].'" alt="'.$rowT['Title'].'">';
                             }
                         echo '<ul>';
                         echo '<li><b>Title:</b> '.$rowT['Title'].' </li>';
