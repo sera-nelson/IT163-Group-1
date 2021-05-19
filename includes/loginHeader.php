@@ -1,7 +1,7 @@
 <?php
 if(!isset($_SESSION['UserName'])) { ?>
-    <a href="login.php">Log In</a>
-    <a href="register.php">Register</a>
+    <a class="navbar-item button is-dark m-3" href="login.php">Log In</a>
+    <a class="navbar-item button is-dark m-3" href="register.php">Register</a>
 <?php
 }else{
     if(isset($_SESSION['success'])): ?>
@@ -16,15 +16,9 @@ if(!isset($_SESSION['UserName'])) { ?>
     <?php endif ?>
 
     <div class="error success">
-    <?php 
-        if(isset($_SESSION['UserName'])): ?>
-            <h3> Welcome, 
-                <?php echo $_SESSION['UserName']; ?>
-            </h3>
-        <p><a href="index.php?logout='1' ">Log out</a></p>
+        <?php if(isset($_SESSION['UserName'])): ?>
+            <h3 class="navbar-item">Welcome, <?php echo $_SESSION['UserName']; ?></h3>
+            <a class="navbar-item button is-dark m-3" href="index.php?logout='1' ">Log out</a>
+        <?php endif ?>
     </div>
-    <?php endif ?>
 <?php } ?>
-
- 
-     

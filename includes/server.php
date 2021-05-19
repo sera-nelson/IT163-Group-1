@@ -58,9 +58,6 @@ if($user) {
     } 
     if($user['Email'] == $Email ){
         array_push($errors, 'Email already exists');
-    }  
-    if($user['Email'] == $Email ){
-        array_push($errors, 'Email already exists');
     } 
 } //if user
 
