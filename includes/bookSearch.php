@@ -1,7 +1,7 @@
 <form action="" method="post"> 
             <p style="display:inline-block;">Search Book By Title</p>
             <input class="input is-small" type="text" name="search" value="<?php echo isset($_POST['search']) ? $_POST['search'] : '' ?>"><br> 
-            <input class="button is-primary" type="submit" value="Submit" name="searchBook"> 
+            <input class="button is-dark" type="submit" value="Submit" name="searchBook"> 
  
         <div class="select">
           <select name="SearchParams">
