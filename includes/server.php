@@ -55,7 +55,8 @@ $user = @mysqli_fetch_assoc($result);
 if($user) {
     if($user['UserName'] == $UserName ){
         array_push($errors, 'Username already exists');
-    } 
+    }
+
     if($user['Email'] == $Email ){
         array_push($errors, 'Email already exists');
     } 
