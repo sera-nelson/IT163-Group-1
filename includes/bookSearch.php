@@ -1,4 +1,9 @@
-<form action="" method="post" class="mb-3"> 
+<?php 
+    $indexParam = $_GET['param'];
+    
+?>
+
+<form action="BookList.php" method="post" class="mb-3"> 
         <label for="search" class="subtitle pt-2">find books on the shelf</label>
         <div class="field my-4">
             <div class="control has-icons-right">
@@ -10,10 +15,10 @@
             <div class="control">
                 <div class="select">
                     <select name="SearchParams">
-                        <option value="TitleParam" <?php echo (isset($_POST['SearchParams']) && $_POST['SearchParams'] == 'TitleParam') ? 'selected' : ''; ?>>Search Options</option>
-                        <option value="TitleParam" <?php echo (isset($_POST['SearchParams']) && $_POST['SearchParams'] == 'TitleParam') ? 'selected' : ''; ?>>Title</option>
-                        <option value="AuthorParam" <?php echo (isset($_POST['SearchParams']) && $_POST['SearchParams'] == 'AuthorParam') ? 'selected' : ''; ?>>Author</option>
-                        <option value="GenreParam" <?php echo (isset($_POST['SearchParams']) && $_POST['SearchParams'] == 'GenreParam') ? 'selected' : ''; ?>>Genre</option>
+                        <option value="TitleParam" <?php echo (isset($_POST['SearchParams']) && $_POST['SearchParams'] == 'TitleParam' || $indexParam == 'TitleParam') ? 'selected' : ''; ?>>Search Options</option>
+                        <option value="TitleParam" <?php echo (isset($_POST['SearchParams']) && $_POST['SearchParams'] == 'TitleParam' || $indexParam == 'TitleParam') ? 'selected' : ''; ?>>Title</option>
+                        <option value="AuthorParam" <?php echo (isset($_POST['SearchParams']) && $_POST['SearchParams'] == 'AuthorParam' || $indexParam == 'AuthorParam') ? 'selected' : ''; ?>>Author</option>
+                        <option value="GenreParam" <?php echo (isset($_POST['SearchParams']) && $_POST['SearchParams'] == 'GenreParam' || $indexParam == 'GenreParam') ? 'selected' : ''; ?>>Genre</option>
         <!--            <option value="">Review (PLACEHOLDER)</option>-->
                     </select>
                 </div>
@@ -24,11 +29,44 @@
         </div>
 </form>
 <?php
+$headSearch = $_GET['headersearch'];
+
+if(isset($headSearch)){
+    $sqlHS = "SELECT b.*, a.Name, g.Genre FROM BookList b INNER JOIN AuthorList a ON b.AuthorID=a.AuthorID INNER JOIN GenreList g ON b.GenreID=g.GenreID WHERE b.Title LIKE '%".$headSearch."%' OR g.Genre LIKE '%".$headSearch."%' OR a.Name LIKE '%".$headSearch."%'"; 
+    $iConn = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) //gets the database credential info
+                    or die(myerror(__FILE__,__LINE__,mysqli_connect_error()));
+                $resultHS = mysqli_query($iConn,$sqlHS) or die(myerror(__FILE__,__LINE__,mysqli_error($iConn)));
+                echo '<p></p>';
+                while($rowHS = mysqli_fetch_array($resultHS)){
+                        echo'<div class="box">';
+                        echo '<div class="columns">';
+                        echo '<div class="column is-half">';
+                        $coverImg = $rowHS['CoverPic'];
+                        if($coverImg == 'NULL'){
+                            echo '<img src="images/noImg.png" alt="'.$rowHS['Title'].'">';
+                        }else{
+                            echo '<img src="'.$rowHS['CoverPic'].'" alt="'.$rowHS['Title'].'">';
+                        }
+                        echo '</div>';
+                        echo '<div class="column cent">';
+                        echo '<ul>';
+                        echo '<li><b>Title:</b> '.$rowHS['Title'].' </li>';
+                        echo '<li><b>Author:</b> '.$rowHS['Name'].' </li>';
+                        echo '<li><b>Genre:</b> '.$rowHS['Genre'].' </li>';
+                        echo '</ul>';
+                        echo '</div>';
+                        echo '</div>'; //end columns
+                        echo'</div>'; //end box
+                        $Feedback = '';
+                }//while
+    
+}
+
 
 if(isset($_POST['searchBook'])){
     if (!empty($_REQUEST['search'])) {
         if(isset($_POST['SearchParams'])){
-            if($_POST['SearchParams'] == 'AuthorParam'){ 
+            if($_POST['SearchParams'] == 'AuthorParam'){
                 $sqlA = "SELECT b.*, a.Name, g.Genre FROM BookList b INNER JOIN AuthorList a ON b.AuthorID=a.AuthorID INNER JOIN GenreList g ON b.GenreID=g.GenreID WHERE a.Name LIKE '%".$_POST['search']."%'"; 
                 $iConn = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) //gets the database credential info
                     or die(myerror(__FILE__,__LINE__,mysqli_connect_error()));
