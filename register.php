@@ -2,78 +2,63 @@
 include('includes/server.php');
 include('includes/header.php');
 ?>
-
-        <div class="container">
-            <h1 class="title">Register</h1>
-        </div>
-
-        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
-
-        <fieldset>
-
-            <label>First Name</label>
-            <input class="input is-normal" type="text" name="FirstName" placeholder="First Name" value="<?php if(isset($_POST['FirstName'])) echo $_POST['FirstName']; ?>">
-
-            <label>Last Name</label>
-            <input class="input is-normal" type="text" name="LastName" placeholder="Last Name" value="<?php if(isset($_POST['LastName'])) echo $_POST['LastName']; ?>">
-
-            <label>Username</label>
-            <input class="input is-normal" type="text" name="UserName" placeholder="Username" value="<?php if(isset($_POST['UserName'])) echo $_POST['UserName']; ?>">
-
-            <label>Email</label>
-            <input class="input is-normal" type="email" name="Email" placeholder="Email" value="<?php if(isset($_POST['Email'])) echo $_POST['Email']; ?>">
-
-            <label>ZipCode</label>
-            <input class="input is-normal" type="text" name="ZipCode" placeholder="ZipCode" value="<?php if(isset($_POST['ZipCode'])) echo $_POST['ZipCode']; ?>">
-
-            <label>Password</label>
-            <input class="input is-normal" type="password" name="Password_1" placeholder="Confirm Password">
-
-            <label>Confirm Password</label>
-            <input class="input is-normal" type="password" name="Password_2" placeholder="Confirm Password">
-
-            <div class="box">
-                <button type="submit" class="button is-dark" name="reg_user">Register</button>
-                <p class="subtitle">Already a member? <a href="login.php">Sign in</a></p>
+<div class="has-background-info p-5 m-3">
+    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
+        <div class="columns is-centered">
+        <div class="column is-half">
+            <fieldset>
+            <div class="field">
+                <div class="control">
+                    <label for="firstname" class="subtitle">First Name</label>
+                    <input id="firstname" class="input has-text-centered" type="text" name="FirstName" placeholder="First Name" value="<?php if(isset($_POST['FirstName'])) echo $_POST['FirstName']; ?>">
+                </div>
             </div>
-
-            <?php
-          include('includes/errors.php');
-            ?>
-    </fieldset>
-   
-        <script>
-            let drop = document.querySelector('.dropdown');
-            drop.addEventListener('click', (event) => {
-                event.stopPropagation();
-                drop.classList.toggle('is-active');
-            });
-
-
-
-            let modal = document.querySelector('.modal-trigger');
-            let pop = document.querySelector('.modal');
-            let close = document.querySelector('.delete');
-            let outside = document.querySelector('.modal-background');
-            let confirm=document.querySelector('.is-success');
-            let cancel=document.querySelector('.is-warning');
-
-            modal.addEventListener('click', (event) => {
-                pop.classList.toggle('is-active');
-            });
-            close.addEventListener('click', (event) => {
-                pop.classList.toggle('is-active');
-            });
-            confirm.addEventListener('click', (event) => {
-                pop.classList.toggle('is-active');
-            });
-            cancel.addEventListener('click', (event) => {
-                pop.classList.toggle('is-active');
-            });
-            window.addEventListener('click', (event) => {
-                if(event.target === outside){
-                    pop.classList.toggle('is-active');
-                }
-            });
-        </script>
+            <div class="field">
+                <div class="control">
+                    <label for="lastname">Last Name</label>
+                    <input id="lastname" class="input has-text-centered" type="text" name="LastName" placeholder="Last Name" value="<?php if(isset($_POST['LastName'])) echo $_POST['LastName']; ?>">
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <label for="username">Username</label>
+                    <input id="username" class="input has-text-centered" type="text" name="UserName" placeholder="Username" value="<?php if(isset($_POST['UserName'])) echo $_POST['UserName']; ?>">
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <label for="email">Email</label>
+                    <input id="email" class="input has-text-centered" type="email" name="Email" placeholder="Email" value="<?php if(isset($_POST['Email'])) echo $_POST['Email']; ?>">
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <label for="zipcode">Zip Code</label>
+                    <input id="zipcode" class="input has-text-centered" type="text" name="ZipCode" placeholder="ZipCode" value="<?php if(isset($_POST['ZipCode'])) echo $_POST['ZipCode']; ?>">
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <label for="pass1">Password</label>
+                    <input id="pass1" class="input has-text-centered" type="password" name="Password_1" placeholder="Confirm Password">
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <label for="pass2">Confirm Password</label>
+                    <input id="pass2" class="input has-text-centered" type="password" name="Password_2" placeholder="Confirm Password">
+                </div>
+            </div>
+            <?php include('includes/errors.php'); ?>
+            <div class="field">
+                <div class="control">
+                    <button type="submit" class="button is-dark" name="reg_user">Register</button>
+                </div>
+            </div>
+            <p class="subtitle">Already a member? <a href="login.php">Sign In Here</a></p>
+            </fieldset>
+        </div>
+        </div>
+    </form>
+</div>
 <?php include('includes/footer.php'); ?>

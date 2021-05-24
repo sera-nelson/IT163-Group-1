@@ -5,17 +5,17 @@
                 <div class="column">
                     <ul>
                         <li><b>&copy; the bookshelf 2021</b></li>
-                        <!--INSERT LINKS TO PORTFOLIOS?-->
+                        <!--TODO: INSERT LINKS TO PORTFOLIOS?-->
                         <li>Hannah Eberts | Design</li>
                         <li>Rory Hackney | Front End</li>
                         <li>Dominick Nelson | Back End</li>
                     </ul>
                 </div>
                 <div class="column">
+                <!--social media icons-->
                     <ul>
                         <li><b>connect</b></li>
                         <li><a href="mailto:info@thebookshelf.com">info@thebookshelf.com</a></li>
-                        <!--ADD LINKS TO ICONS?-->
                         <li><i class="fab fa-facebook fa-2x" title="Facebook icon"></i>
                         <span class="is-sr-only">Facebook icon</span>
                         <i class="fab fa-facebook-messenger fa-2x" title="Facebook Messenger icon"></i>
@@ -36,5 +36,12 @@
                 </div>
             </div>
         </footer>
+        <!--load Jquery-->
+        <script
+			  src="https://code.jquery.com/jquery-3.6.0.min.js"
+			  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+			  crossorigin="anonymous">
+        </script>
+        <script src="clickfunctions.js"></script>
     </body>
 </html>

@@ -2,7 +2,7 @@
 session_start();
 
 if(!isset($_SESSION['UserName'])) {
-    $_SESSION['msg'] = 'You must login first';
+    $_SESSION['msg'] = 'You must log in first';
     header('Location: login.php');
 }
 
