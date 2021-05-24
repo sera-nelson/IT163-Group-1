@@ -152,5 +152,33 @@ if(isset($_POST['searchBook'])){
                 }//while
             }//else 
         }
+    }else{//if search bar is empty
+         $sqlE = "SELECT b.*, a.Name, g.Genre FROM BookList b INNER JOIN AuthorList a ON b.AuthorID=a.AuthorID INNER JOIN GenreList g ON b.GenreID=g.GenreID"; 
+                $iConn = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) //gets the database credential info
+                    or die(myerror(__FILE__,__LINE__,mysqli_connect_error()));
+                $resultE = mysqli_query($iConn,$sqlE) or die(myerror(__FILE__,__LINE__,mysqli_error($iConn)));
+                echo '<p></p>';
+                while($rowE = mysqli_fetch_array($resultE)){
+                        echo'<div class="box">';
+                        echo '<div class="columns">';
+                        echo '<div class="column is-half">';
+                        $coverImg = $rowE['CoverPic'];
+                        if($coverImg == 'NULL'){
+                            echo '<img src="images/noImg.png" alt="'.$rowE['Title'].'">';
+                        }else{
+                            echo '<img src="'.$rowE['CoverPic'].'" alt="'.$rowE['Title'].'">';
+                        }
+                        echo '</div>';
+                        echo '<div class="column cent">';
+                        echo '<ul>';
+                        echo '<li><b>Title:</b> '.$rowE['Title'].' </li>';
+                        echo '<li><b>Author:</b> '.$rowE['Name'].' </li>';
+                        echo '<li><b>Genre:</b> '.$rowE['Genre'].' </li>';
+                        echo '</ul>';
+                        echo'</div>';
+                        echo'</div>'; //close columns
+                        echo'</div>'; //close box
+                        $Feedback = '';
+            }
     }
 }
