@@ -2,6 +2,7 @@
 
 session_start();
 
+//if the user clicks log out, log them out and redirect to login.php
 if(isset($_GET['logout'])){
     session_destroy();
     unset($_SESSION['UserName']);
@@ -75,15 +76,35 @@ switch($page) {
         <meta name="keywords" content="books, reviews, fiction, nonfiction, bookshelf">
         <meta name="author" content="Hannah Eberts (design), Rory Hackney (front-end), Dominick Nelson (back-end)">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--favicon links-->
+        <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+        `<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="manifest" href="/manifest.json">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+        <meta name="theme-color" content="#ffffff">`
+        <!--CDNs, stylesheet-->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+        <script src="/node_modules/bulma-extensions/bulma-slider/dist/bulma-slider.min.js"></script>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" type="text/css" href="styles.css">
     </head>
     <body class="has-background-info">
         <header class="has-background-info"> 
             <div class="columns">
-                <div class="column is-2 p-5 ml-3">
-                    <a class="logo" href="index.php"><img src="images/logosmall.png" alt="The Bookshelf Logo"></a>
+                <div class="column is-2 p-5 ml-3 is-one-half-mobile">
+                    <a class="logo" href="index.php"><img src="images/logo.svg" alt="The Bookshelf Logo"></a>
                 </div>               
                 <div id="mynavdiv" class="column mb-4">
                     <nav class="navbar is-transparent" aria-label="main navigation">
@@ -111,11 +132,11 @@ switch($page) {
                                 " href="reviews.php">Reviews</a>
                             </div>
                             <div class="navbar-end">
+                                <!--TODO: add form action for headersearch-->
                                 <form action="" class="navbar-item" method="get">
                                     <label class="m-1 mr-4" for="headersearch">Search</label>
                                     <div class="field m-0">
                                         <div class="control has-icons-right">
-                                            <!--TODO: add form action for headersearch-->
                                             <input type="text" id="headersearch" name="headersearch" class="input has-text-centered" placeholder="Search">
                                             <span class="icon is-right"><i title="search" class="fas fa-search"></i></span>
                                         </div>
