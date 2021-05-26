@@ -1,4 +1,5 @@
         </main>
+
         <hr class="has-background-warning m-0">
         <footer class="footer has-background-info p-3 pb-5 m-0">
             <div class="columns has-text-centered">
@@ -35,6 +36,24 @@
                     </ul>
                 </div>
             </div>
+            <script>
+                var time = 0;
+                var checkTime;
+                
+                    setTimer();
+                    function timer(){
+                        checkTime = setTimeout(setTimer, 1000);
+                    }
+                    function setTimer(){
+                        time = time + 1;
+                        document.getElementById("timer").innerHTML = time;
+//                        timer();
+                    }
+                
+            </script>
+            <div onload="setTimer()">
+                <p id="timer">You have been on this page for 0 seconds!</p>
+            </div>
         </footer>
         <!--load Jquery-->
         <script
@@ -43,5 +62,20 @@
 			  crossorigin="anonymous">
         </script>
         <script src="clickfunctions.js"></script>
+        <script>
+            var time = 0;
+            var checkTime;
+
+                setTimer();
+                function timer(){
+                    checkTime = setTimeout(setTimer, 1000);
+                }
+                function setTimer(){
+                    time = time + 1;
+                    document.getElementById("timer").innerHTML = "You have been on this page for " + time + " seconds!";
+                    timer();
+                }
+
+        </script>
     </body>
 </html>
