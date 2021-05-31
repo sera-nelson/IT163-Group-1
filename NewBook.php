@@ -2,11 +2,11 @@
 include('includes/LoginCheck.php');
 include('includes/header.php');
 ?>
-<div class="has-background-info p-5 m-3">
+
+<div class="columns is-centered">
+<div class="column is-half has-background-info-light p-5 m-3">
     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
         <fieldset>
-        <div class="columns is-centered">
-        <div class="column is-half">
             <div class="field">
                 <div class="control">
                     <label for="title">Title</label>
@@ -31,7 +31,7 @@ include('includes/header.php');
             </div>
             <div class="field">
                 <div class="control">
-                    <button type="submit" class="button is-primary" name="reg_book">Add Book</button>
+                    <button type="submit" class="button is-warning" name="reg_book">Add Book</button>
                 </div>
             </div>
             <?php include('includes/server.php'); ?>
@@ -39,5 +39,6 @@ include('includes/header.php');
         </div>
         </fieldset>
     </form>
+</div>
 </div>
 <?php include('includes/footer.php'); ?>
