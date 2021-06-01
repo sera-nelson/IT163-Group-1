@@ -3,7 +3,9 @@
 ?>
 
 <form action="reviews.php" method="post" class="mb-3">
-    <label for="search" class="subtitle pt-2">search reviews by book</label>
+    <div class="field-label has-text-centered">
+        <label for="search" class="subtitle pt-2 is-size-4 has-text-centered">search reviews by book</label>
+    </div>
     <div class="field my-4">
         <div class="control has-icons-right">
             <input id="search" class="input has-text-centered" type="text" name="search" placeholder="Search" value="<?php echo isset($_POST['search']) ? $_POST['search'] : '' ?>">
@@ -23,7 +25,7 @@
                 </div>
             </div>
             <div class="control">
-                <button class="button is-dark" type="submit" value="Submit" name="searchReview">Submit</button>
+                <button class="button is-warning" type="submit" value="Submit" name="searchReview">Submit</button>
             </div>
         </div>
 </form>

@@ -1,7 +1,9 @@
 <?php
 if(!isset($_SESSION['UserName'])) { ?>
-    <a class="navbar-item button is-dark m-3" href="login.php">Log In</a>
-    <a class="navbar-item button is-dark m-3" href="register.php">Register</a>
+<div class="navbar-item">
+    <a class="button is-warning m-3" href="login.php">Log In</a>
+    <a class="button is-warning m-3" href="register.php">Register</a>
+</div>
 <?php
 }else{
     if(isset($_SESSION['success'])): ?>
@@ -15,10 +17,10 @@ if(!isset($_SESSION['UserName'])) { ?>
     </div>
     <?php endif ?>
 
-    <div class="error success">
+    <div class="error success navbar-item">
         <?php if(isset($_SESSION['UserName'])): ?>
-            <h3 class="navbar-item">Welcome, <?php echo $_SESSION['UserName']; ?></h3>
-            <a class="navbar-item button is-dark m-3" href="index.php?logout='1' ">Log out</a>
+            <h3>Welcome, <?php echo $_SESSION['UserName']; ?></h3>
+            <a class="button is-warning m-3" href="index.php?logout='1' ">Log out</a>
         <?php endif ?>
     </div>
 <?php } ?>
