@@ -2,6 +2,16 @@
     margin-top: auto;
 }
 
+#logo {
+    background-image: url('images/logo.svg');
+    background-repeat: no-repeat;
+    min-height: 200px;
+}
+
 .cent {
     margin: auto;
+}
+
+::placeholder {
+    font-weight: bold;
 }

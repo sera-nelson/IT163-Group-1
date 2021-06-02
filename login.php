@@ -2,7 +2,7 @@
 include('includes/server.php');
 include('includes/header.php');
 ?>
-<div class="has-background-info p-5 m-3">
+<div class="has-background-info-light p-5 m-3">
     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
         <fieldset>
             <div class="columns is-centered">
@@ -22,7 +22,7 @@ include('includes/header.php');
                 <?php include('includes/errors.php'); ?>
                 <div class="field">
                     <div class="control">
-                        <button type="submit" class="button is-dark" value="Submit" name="login_user">Login</button>
+                        <button type="submit" class="button is-warning" value="Submit" name="login_user">Login</button>
                     </div>
                 </div>
                 <p class="subtitle">No account? <a href="register.php">Register Here</a></p>

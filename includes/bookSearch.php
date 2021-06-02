@@ -4,29 +4,31 @@
 ?>
 
 <form action="BookList.php" method="post" class="mb-3"> 
-        <label for="search" class="subtitle pt-2">find books on the shelf</label>
-        <div class="field my-4">
-            <div class="control has-icons-right">
-                <input id="search" class="input has-text-centered" type="text" name="search" placeholder="Search" value="<?php echo isset($_POST['search']) ? $_POST['search'] : '' ?>">
-                <span class="icon is-right"><i title="search" class="fas fa-search"></i></span>
+    <div class="field-label has-text-centered">
+        <label for="search" class="subtitle pt-2 has-text-centered is-size-4">find books on the shelf</label>
+    </div>        
+    <div class="field my-4">
+        <div class="control has-icons-right">
+            <input id="search" class="input has-text-centered" type="text" name="search" placeholder="Search" value="<?php echo isset($_POST['search']) ? $_POST['search'] : '' ?>">
+            <span class="icon is-right"><i title="search" class="fas fa-search"></i></span>
+        </div>
+    </div>
+    <div class="field is-grouped">
+        <div class="control">
+            <div class="select">
+                <select name="SearchParams">
+                    <option value="TitleParam" <?php echo (isset($_POST['SearchParams']) && $_POST['SearchParams'] == 'TitleParam' || $indexParam == 'TitleParam') ? 'selected' : ''; ?>>Search Options</option>
+                    <option value="TitleParam" <?php echo (isset($_POST['SearchParams']) && $_POST['SearchParams'] == 'TitleParam' || $indexParam == 'TitleParam') ? 'selected' : ''; ?>>Title</option>
+                    <option value="AuthorParam" <?php echo (isset($_POST['SearchParams']) && $_POST['SearchParams'] == 'AuthorParam' || $indexParam == 'AuthorParam') ? 'selected' : ''; ?>>Author</option>
+                    <option value="GenreParam" <?php echo (isset($_POST['SearchParams']) && $_POST['SearchParams'] == 'GenreParam' || $indexParam == 'GenreParam') ? 'selected' : ''; ?>>Genre</option>
+    <!--            <option value="">Review (PLACEHOLDER)</option>-->
+                </select>
             </div>
         </div>
-        <div class="field is-grouped">
-            <div class="control">
-                <div class="select">
-                    <select name="SearchParams">
-                        <option value="TitleParam" <?php echo (isset($_POST['SearchParams']) && $_POST['SearchParams'] == 'TitleParam' || $indexParam == 'TitleParam') ? 'selected' : ''; ?>>Search Options</option>
-                        <option value="TitleParam" <?php echo (isset($_POST['SearchParams']) && $_POST['SearchParams'] == 'TitleParam' || $indexParam == 'TitleParam') ? 'selected' : ''; ?>>Title</option>
-                        <option value="AuthorParam" <?php echo (isset($_POST['SearchParams']) && $_POST['SearchParams'] == 'AuthorParam' || $indexParam == 'AuthorParam') ? 'selected' : ''; ?>>Author</option>
-                        <option value="GenreParam" <?php echo (isset($_POST['SearchParams']) && $_POST['SearchParams'] == 'GenreParam' || $indexParam == 'GenreParam') ? 'selected' : ''; ?>>Genre</option>
-        <!--            <option value="">Review (PLACEHOLDER)</option>-->
-                    </select>
-                </div>
-            </div>
-            <div class="control">
-                <button class="button is-dark" type="submit" value="Submit" name="searchBook">Submit</button>
-            </div>
+        <div class="control">
+            <button class="button is-warning" type="submit" value="Submit" name="searchBook">Submit</button>
         </div>
+    </div>
 </form>
 <?php
 $headSearch = $_GET['headersearch'];

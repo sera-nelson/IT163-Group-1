@@ -1,11 +1,10 @@
+//modal and dropdown implementation tests
 window.addEventListener('load', (event) => {
     let drop = document.querySelector('.dropdown');
     drop.addEventListener('click', (event) => {
         event.stopPropagation();
         drop.classList.toggle('is-active');
     });
-
-
 
     let modal = document.querySelector('.modal-trigger');
     let pop = document.querySelector('.modal');
@@ -106,4 +105,17 @@ $("#suggesstion-box-book").hide();
 }
 function bookID(val) {
 $("#bookID").val(val);
+}
+
+//timer scripts (in footer of all pages)
+var time = 0;
+var checkTime;
+setTimer();
+function timer(){
+    checkTime = setTimeout(setTimer, 1000);
+}
+function setTimer(){
+    time = time + 1;
+    document.getElementById("timer").innerHTML = "You have been on this page for " + time + " seconds!";
+    timer();
 }
