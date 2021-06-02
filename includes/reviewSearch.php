@@ -16,11 +16,11 @@
             <div class="control">
                 <div class="select">
                     <select name="SearchParams">
-                        <option value="TitleParam" <?php echo (isset($_POST['SearchParams']) && $_POST['SearchParams'] == 'TitleParam' || $indexParam == 'TitleParam') ? 'selected' : ''; ?>>Search Options</option>
+                        <option value="AllParam" <?php echo (isset($_POST['SearchParams']) && $_POST['SearchParams'] == 'AllParam' || $indexParam == 'AllParam') ? 'selected' : ''; ?>>Search Options</option>
                         <option value="TitleParam" <?php echo (isset($_POST['SearchParams']) && $_POST['SearchParams'] == 'TitleParam' || $indexParam == 'TitleParam') ? 'selected' : ''; ?>>Title</option>
                         <option value="AuthorParam" <?php echo (isset($_POST['SearchParams']) && $_POST['SearchParams'] == 'AuthorParam' || $indexParam == 'AuthorParam') ? 'selected' : ''; ?>>Author</option>
                         <option value="GenreParam" <?php echo (isset($_POST['SearchParams']) && $_POST['SearchParams'] == 'GenreParam' || $indexParam == 'GenreParam') ? 'selected' : ''; ?>>Genre</option>
-        <!--            <option value="">Review (PLACEHOLDER)</option>-->
+                        <option value="AllParam" <?php echo (isset($_POST['SearchParams']) && $_POST['SearchParams'] == 'AllParam' || $indexParam == 'AllParam') ? 'selected' : ''; ?>>All</option>
                     </select>
                 </div>
             </div>
@@ -39,27 +39,22 @@ if(isset($_POST['searchReview'])) {
                 $iConn = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) //gets the database credential info
                     or die(myerror(__FILE__,__LINE__,mysqli_connect_error()));
                 $resultA = mysqli_query($iConn,$sqlA) or die(myerror(__FILE__,__LINE__,mysqli_error($iConn)));
-                echo '<p></p>';
+                echo '<div class="box">';
+                echo '<div class="columns is-multiline">';
                 while($rowA = mysqli_fetch_array($resultA)) {
-                        echo '<div class="box">';
-                        echo '<div class="columns">';
-                        echo '<div class="column is-half">';
+                    echo '<div class="column is-one-third">';
                         $coverImg = $rowA['CoverPic'];
                         if($coverImg == 'NULL'){
-                            echo '<img src="images/noImg.png" alt="'.$rowA['Title'].'">';
+                            echo '<img src="images/noImg.png" alt="'.$rowA['Title'].'" class="bookCovers">';
                         }else{
-                            echo '<img src="'.$rowA['CoverPic'].'" alt="'.$rowA['Title'].'">';
+                            echo '<img src="'.$rowA['CoverPic'].'" alt="'.$rowA['Title'].'" class="bookCovers">';
                         }
-                        echo '</div>';
-                        echo '<div class="column cent">';
                         echo '<ul>';
-                        echo '<li><b>Title:</b> '.$rowA['Title'].' by '.$rowA['Name'].' </li>';
-                        echo '<li><b>Reviewer:</b> '.$rowA['UserName'].' </li>';
-                        echo '<li><b>Rating:</b> '.$rowA['Rating'].' </li>';
-                        echo '<li><b>Review:</b> '.$rowA['Review'].' </li>';
+                        echo '<li class="bookText"><b>Title:</b> '.$rowA['Title'].' by '.$rowA['Name'].' </li>';
+                        echo '<li class="bookText"><b>Reviewer:</b> '.$rowA['UserName'].' </li>';
+                        echo '<li class="bookText"><b>Rating:</b> '.$rowA['Rating'].' </li>';
+                        echo '<li class="bookText"><b>Review:</b> '.$rowA['Review'].' </li>';
                         echo '</ul>';
-                        echo '</div>';
-                        echo '</div>';
                         echo '</div>';
                         $Feedback = '';
                 }//while
@@ -68,27 +63,22 @@ if(isset($_POST['searchReview'])) {
                 $iConn = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) //gets the database credential info
                     or die(myerror(__FILE__,__LINE__,mysqli_connect_error()));
                 $resultG = mysqli_query($iConn,$sqlG) or die(myerror(__FILE__,__LINE__,mysqli_error($iConn)));
-                echo '<p></p>';
+                echo '<div class="box">';
+                echo '<div class="columns is-multiline">';
                 while($rowG = mysqli_fetch_array($resultG)) {
-                        echo '<div class="box">';
-                        echo '<div class="columns">';
-                        echo '<div class="column is-half">';
+                    echo '<div class="column is-one-third">';
                         $coverImg = $rowG['CoverPic'];
                         if($coverImg == 'NULL'){
-                            echo '<img src="images/noImg.png" alt="'.$rowG['Title'].'">';
+                            echo '<img src="images/noImg.png" alt="'.$rowG['Title'].'" class="bookCovers">';
                         }else{
-                            echo '<img src="'.$rowG['CoverPic'].'" alt="'.$rowG['Title'].'">';
+                            echo '<img src="'.$rowG['CoverPic'].'" alt="'.$rowG['Title'].'" class="bookCovers">';
                         }
-                        echo '</div>';
-                        echo '<div class="column cent">';
                         echo '<ul>';
-                        echo '<li><b>Title:</b> '.$rowG['Title'].' by '.$rowG['Name'].' </li>';
-                        echo '<li><b>Reviewer:</b> '.$rowG['UserName'].' </li>';
-                        echo '<li><b>Rating:</b> '.$rowG['Rating'].' </li>';
-                        echo '<li><b>Review:</b> '.$rowG['Review'].' </li>';
+                        echo '<li class="bookText"><b>Title:</b> '.$rowG['Title'].' by '.$rowG['Name'].' </li>';
+                        echo '<li class="bookText"><b>Reviewer:</b> '.$rowG['UserName'].' </li>';
+                        echo '<li class="bookText"><b>Rating:</b> '.$rowG['Rating'].' </li>';
+                        echo '<li class="bookText"><b>Review:</b> '.$rowG['Review'].' </li>';
                         echo '</ul>';
-                        echo '</div>';
-                        echo '</div>';
                         echo '</div>';
                         $Feedback = '';
                 }//while
@@ -97,30 +87,27 @@ if(isset($_POST['searchReview'])) {
                 $iConn = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) //gets the database credential info
                     or die(myerror(__FILE__,__LINE__,mysqli_connect_error()));
                 $resultT = mysqli_query($iConn,$sqlT) or die(myerror(__FILE__,__LINE__,mysqli_error($iConn)));
-                echo '<p></p>';
+                echo '<div class="box">';
+                echo '<div class="columns is-multiline">';
                 while($rowT = mysqli_fetch_array($resultT)) {
-                        echo '<div class="box">';
-                        echo '<div class="columns">';
-                        echo '<div class="column is-half">';
+                    echo '<div class="column is-one-third">';
                         $coverImg = $rowT['CoverPic'];
                         if($coverImg == 'NULL'){
-                            echo '<img src="images/noImg.png" alt="'.$rowT['Title'].'">';
+                            echo '<img src="images/noImg.png" alt="'.$rowT['Title'].'" class="bookCovers">';
                         }else{
-                            echo '<img src="'.$rowT['CoverPic'].'" alt="'.$rowT['Title'].'">';
+                            echo '<img src="'.$rowT['CoverPic'].'" alt="'.$rowT['Title'].'" class="bookCovers">';
                         }
-                        echo '</div>';
-                        echo '<div class="column cent">';
                         echo '<ul>';
-                        echo '<li><b>Title:</b> '.$rowT['Title'].' by '.$rowT['Name'].' </li>';
-                        echo '<li><b>Reviewer:</b> '.$rowT['UserName'].' </li>';
-                        echo '<li><b>Rating:</b> '.$rowT['Rating'].' </li>';
-                        echo '<li><b>Review:</b> '.$rowT['Review'].' </li>';
+                        echo '<li class="bookText"><b>Title:</b> '.$rowT['Title'].' by '.$rowT['Name'].' </li>';
+                        echo '<li class="bookText"><b>Reviewer:</b> '.$rowT['UserName'].' </li>';
+                        echo '<li class="bookText"><b>Rating:</b> '.$rowT['Rating'].' </li>';
+                        echo '<li class="bookText"><b>Review:</b> '.$rowT['Review'].' </li>';
                         echo '</ul>';
-                        echo '</div>';
-                        echo '</div>';
                         echo '</div>';
                         $Feedback = '';
                 }//while
+                echo '</div>';
+                echo '</div>';
             }
         }     
     }else{//if search bar is empty
@@ -128,29 +115,29 @@ if(isset($_POST['searchReview'])) {
                 $iConn = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) //gets the database credential info
                     or die(myerror(__FILE__,__LINE__,mysqli_connect_error()));
                 $resultE = mysqli_query($iConn,$sqlE) or die(myerror(__FILE__,__LINE__,mysqli_error($iConn)));
-                echo '<p></p>';
+                echo '<div class="box">';
+                echo '<div class="columns is-multiline">';
                 while($rowE = mysqli_fetch_array($resultE)) {
-                        echo '<div class="box">';
-                        echo '<div class="columns">';
-                        echo '<div class="column is-half">';
+                    echo '<div class="column is-one-third">';
                         $coverImg = $rowE['CoverPic'];
                         if($coverImg == 'NULL'){
-                            echo '<img src="images/noImg.png" alt="'.$rowE['Title'].'">';
+                            echo '<img src="images/noImg.png" alt="'.$rowE['Title'].'" class="bookCovers">';
                         }else{
-                            echo '<img src="'.$rowE['CoverPic'].'" alt="'.$rowE['Title'].'">';
+                            echo '<img src="'.$rowE['CoverPic'].'" alt="'.$rowE['Title'].'" class="bookCovers">';
                         }
-                        echo '</div>';
-                        echo '<div class="column cent">';
                         echo '<ul>';
-                        echo '<li><b>Title:</b> '.$rowE['Title'].' by '.$rowE['Name'].' </li>';
-                        echo '<li><b>Reviewer:</b> '.$rowE['UserName'].' </li>';
-                        echo '<li><b>Rating:</b> '.$rowE['Rating'].' </li>';
-                        echo '<li><b>Review:</b> '.$rowE['Review'].' </li>';
+                        echo '<li class="bookText"><b>Title:</b> '.$rowE['Title'].' by '.$rowE['Name'].' </li>';
+                        echo '<li class="bookText"><b>Reviewer:</b> '.$rowE['UserName'].' </li>';
+                        echo '<li class="bookText"><b>Rating:</b> '.$rowE['Rating'].' </li>';
+                        echo '<li class="bookText"><b>Review:</b> '.$rowE['Review'].' </li>';
                         echo '</ul>';
-                        echo '</div>';
-                        echo '</div>';
                         echo '</div>';
                         $Feedback = '';
             }
+            echo '</div>';
+                echo '</div>';
     }
+}
+else{
+    include('includes/randReview.php');
 }

@@ -248,13 +248,6 @@ if(isset($_POST['reg_review'])){
 //    foreach($result as $uname) {
 //        $UQR = $uname['UserID'];
 //    }
-    if($_POST['Recc'] == 'Yes'){
-        $Yes = "Yes";
-        $Recc = @mysqli_real_escape_string($db, $Yes);
-    }else{
-        $No = "No";
-        $Recc = @mysqli_real_escape_string($db, $No);
-    }
 //    $ReviewerName = @mysqli_real_escape_string($db, $UQR);
     $Book = @mysqli_real_escape_string($db, $_POST['bookID']);
     $Rating = @mysqli_real_escape_string($db, $_POST['Rating']);
@@ -269,7 +262,7 @@ if(isset($_POST['reg_review'])){
     
     
     
-    $query = "INSERT INTO ReviewList (BookID, Rating, Reccomend, Review) VALUES ('$Book', '$Rating', '$Recc', '$Review') ";
+    $query = "INSERT INTO ReviewList (BookID, Rating, Review) VALUES ('$Book', '$Rating',' $Review') ";
     
     mysqli_query($db, $query);
     $_SESSION['UserName'] = $UserName;
