@@ -146,11 +146,11 @@ function winPrize(){ //1 in 10 chance to win prize when entering index page
 var w = window.innerWidth;
 var h = window.innerHeight;
 
-//function aniLogo(){ 
-//    var x = document.getElementById('logo');
-//    x.setAttribute("style", "background-size: 105% 105%; background-position: left " + (x.offsetLeft - (w * (0.045))) + "px top " + (x.offsetTop - (w * (0.004))) + "px;");
-//}
-//function unAniLogo(){ 
-//    var x = document.getElementById('logo');
-//    x.setAttribute("style", "background-size: ");
-//}
+function aniLogo(){ 
+    var x = document.getElementById('logo');
+    x.setAttribute("style", "transform: rotate(45deg);");
+}
+function unAniLogo(){ 
+    var x = document.getElementById('logo');
+    x.setAttribute("style", "transform: ");
+}
