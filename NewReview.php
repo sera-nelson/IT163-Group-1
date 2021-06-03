@@ -25,15 +25,6 @@ include('includes/header.php');
         </div>
         <div class="field">
             <div class="control">
-                <label>Would you recommend this book to a friend?</label>
-                <label for="yes">Yes</label>
-                <input id="yes" class="radio" type="radio" name="Recc" value="Yes" checked>
-                <label for="no">No</label>
-                <input id="no" class="radio" type="radio" name="Recc" value="No">
-            </div>
-        </div>
-        <div class="field">
-            <div class="control">
                 <label for="review">Review</label>
                 <textarea id="review" class="textarea" name="Review" placeholder="Leave your review here!" rows="8" value="<?php if(isset($_POST['Review'])) echo $_POST['Review']; ?>"></textarea>
             </div>

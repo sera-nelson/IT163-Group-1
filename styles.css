@@ -15,3 +15,11 @@
 ::placeholder {
     font-weight: bold;
 }
+
+.bookCovers{
+    width: 45%;
+    height: auto;
+}
+.bookText{
+    font: 10px;
+}

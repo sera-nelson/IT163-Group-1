@@ -119,3 +119,38 @@ function setTimer(){
     document.getElementById("timer").innerHTML = "You have been on this page for " + time + " seconds!";
     timer();
 }
+
+winPrize();
+function winPrize(){ //1 in 10 chance to win prize when entering index page
+    var pChance = 0;
+    prizeTimer();
+
+    function prize(){
+        alert("You have won a prize!");
+    }
+    
+    function prizeTimer(){
+    checkTime = setTimeout(prizeChance, 1000);
+    }
+    
+    function prizeChance() {
+        var x = Math.floor(Math.random() * 10 + 1);
+        pChance = x;
+        document.getElementById("ptimeTest").innerHTML = pChance;
+        if(pChance == 10){
+            prize();
+        }
+    }
+}
+
+var w = window.innerWidth;
+var h = window.innerHeight;
+
+//function aniLogo(){ 
+//    var x = document.getElementById('logo');
+//    x.setAttribute("style", "background-size: 105% 105%; background-position: left " + (x.offsetLeft - (w * (0.045))) + "px top " + (x.offsetTop - (w * (0.004))) + "px;");
+//}
+//function unAniLogo(){ 
+//    var x = document.getElementById('logo');
+//    x.setAttribute("style", "background-size: ");
+//}
