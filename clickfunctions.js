@@ -1,5 +1,5 @@
 //modal and dropdown implementation tests
-window.addEventListener('load', (event) => {
+$(document).ready(function(){
     let drop = document.querySelector('.dropdown');
     drop.addEventListener('click', (event) => {
         event.stopPropagation();
@@ -30,7 +30,7 @@ window.addEventListener('load', (event) => {
             pop.classList.toggle('is-active');
         }
     });
-}); //end window onload
+}); //end doc ready
 
 
 //NEW BOOK SCRIPTS
@@ -48,7 +48,7 @@ $(document).ready(function(){
         }
         });
     });
-});
+}); //end doc ready
 
 function selectName(val) {
 $("#search-box").val(val);
@@ -72,7 +72,7 @@ $(document).ready(function(){
         }
         });
     });
-});
+}); //end doc ready
 
 function selectGenre(val) {
 $("#search-box-genre").val(val);
@@ -97,7 +97,7 @@ $(document).ready(function(){
         }
         });
     });
-});
+}); //end doc ready
 
 function selectBook(val) {
 $("#search-box-book").val(val);
@@ -111,6 +111,7 @@ $("#bookID").val(val);
 var time = 0;
 var checkTime;
 setTimer();
+
 function timer(){
     checkTime = setTimeout(setTimer, 1000);
 }
@@ -143,14 +144,38 @@ function winPrize(){ //1 in 10 chance to win prize when entering index page
     }
 }
 
-var w = window.innerWidth;
-var h = window.innerHeight;
+var ani = null;
+function aniLogo(){ 
+    var x = document.getElementById('logo');
+    var i = 0;
+    clearInterval(ani);
+    ani = setInterval(spin, 10);
+    function spin() {
+        if (360 <= i) {
+            clearInterval(ani);
+        } else {
+            i = i + 1; 
+            x.setAttribute("style", "transform: rotate(" + i + "deg);");
+        }
+    }
+}
+function unAniLogo(){ 
+    var x = document.getElementById('logo');
+    clearInterval(ani);
+    x.setAttribute("style", "transform: rotate(0deg);");
+}
 
-//function aniLogo(){ 
-//    var x = document.getElementById('logo');
-//    x.setAttribute("style", "background-size: 105% 105%; background-position: left " + (x.offsetLeft - (w * (0.045))) + "px top " + (x.offsetTop - (w * (0.004))) + "px;");
-//}
-//function unAniLogo(){ 
-//    var x = document.getElementById('logo');
-//    x.setAttribute("style", "background-size: ");
-//}
+//dark mode toggle
+var toggle = document.getElementById("mode");
+var body = document.body;
+toggle.addEventListener("click", modeToggle, false);
+
+function modeToggle() {
+    if(toggle.innerText === "Light Mode"){
+        toggle.innerText = "Dark Mode";
+        body.classList.toggle("invert");
+    } else {
+        toggle.innerText = "Light Mode";
+        body.classList.toggle("invert");
+    }
+}

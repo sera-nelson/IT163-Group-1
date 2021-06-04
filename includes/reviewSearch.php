@@ -35,7 +35,7 @@ if(isset($_POST['searchReview'])) {
     if(!empty($_REQUEST['search'])) {
         if(isset($_POST['SearchParams'])){
             if($_POST['SearchParams'] == 'AuthorParam'){
-                $sqlA = "SELECT r.*, b.*, a.Name, u.UserName FROM ReviewList r INNER JOIN BookList b ON r.BookID=b.BookID INNER JOIN AuthorList a ON b.AuthorID=a.AuthorID INNER JOIN Users u ON r.UserID=u.UserID WHERE a.Name LIKE '%".$_POST['search']."%'";
+                $sqlA = "SELECT r.*, b.*, a.Name, u.UserName, g.Genre FROM ReviewList r INNER JOIN BookList b ON r.BookID=b.BookID INNER JOIN AuthorList a ON b.AuthorID=a.AuthorID INNER JOIN GenreList g ON b.GenreID=g.GenreID INNER JOIN Users u ON r.UserID=u.UserID WHERE a.Name LIKE '%".$_POST['search']."%'";
                 $iConn = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) //gets the database credential info
                     or die(myerror(__FILE__,__LINE__,mysqli_connect_error()));
                 $resultA = mysqli_query($iConn,$sqlA) or die(myerror(__FILE__,__LINE__,mysqli_error($iConn)));
@@ -59,7 +59,7 @@ if(isset($_POST['searchReview'])) {
                         $Feedback = '';
                 }//while
             }elseif($_POST['SearchParams'] == 'GenreParam'){
-                $sqlG = "SELECT r.*, b.*, a.Name, u.UserName FROM ReviewList r INNER JOIN BookList b ON r.BookID=b.BookID INNER JOIN AuthorList a ON b.AuthorID=a.AuthorID INNER JOIN Users u ON r.UserID=u.UserID WHERE g.Genre LIKE '%".$_POST['search']."%'";
+                $sqlG = "SELECT r.*, b.*, a.Name, u.UserName, g.Genre FROM ReviewList r INNER JOIN BookList b ON r.BookID=b.BookID INNER JOIN AuthorList a ON b.AuthorID=a.AuthorID INNER JOIN GenreList g ON b.GenreID=g.GenreID INNER JOIN Users u ON r.UserID=u.UserID WHERE g.Genre LIKE '".$_POST['search']."%'";
                 $iConn = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) //gets the database credential info
                     or die(myerror(__FILE__,__LINE__,mysqli_connect_error()));
                 $resultG = mysqli_query($iConn,$sqlG) or die(myerror(__FILE__,__LINE__,mysqli_error($iConn)));
@@ -83,7 +83,7 @@ if(isset($_POST['searchReview'])) {
                         $Feedback = '';
                 }//while
             }else{
-                $sqlT = "SELECT r.*, b.*, a.Name, u.UserName FROM ReviewList r INNER JOIN BookList b ON r.BookID=b.BookID INNER JOIN AuthorList a ON b.AuthorID=a.AuthorID INNER JOIN Users u ON r.UserID=u.UserID WHERE b.Title LIKE '%".$_POST['search']."%'";
+                $sqlT = "SELECT r.*, b.*, a.Name, u.UserName, g.Genre FROM ReviewList r INNER JOIN BookList b ON r.BookID=b.BookID INNER JOIN AuthorList a ON b.AuthorID=a.AuthorID INNER JOIN GenreList g ON b.GenreID=g.GenreID INNER JOIN Users u ON r.UserID=u.UserID WHERE b.Title LIKE '%".$_POST['search']."%'";
                 $iConn = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) //gets the database credential info
                     or die(myerror(__FILE__,__LINE__,mysqli_connect_error()));
                 $resultT = mysqli_query($iConn,$sqlT) or die(myerror(__FILE__,__LINE__,mysqli_error($iConn)));
@@ -111,7 +111,7 @@ if(isset($_POST['searchReview'])) {
             }
         }     
     }else{//if search bar is empty
-        $sqlE = "SELECT r.*, b.*, a.Name, u.UserName FROM ReviewList r INNER JOIN BookList b ON r.BookID=b.BookID INNER JOIN AuthorList a ON b.AuthorID=a.AuthorID INNER JOIN Users u ON r.UserID=u.UserID";
+        $sqlE = "SELECT r.*, b.*, a.Name, u.UserName, g.Genre FROM ReviewList r INNER JOIN BookList b ON r.BookID=b.BookID INNER JOIN AuthorList a ON b.AuthorID=a.AuthorID INNER JOIN GenreList g ON b.GenreID=g.GenreID INNER JOIN Users u ON r.UserID=u.UserID";
                 $iConn = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) //gets the database credential info
                     or die(myerror(__FILE__,__LINE__,mysqli_connect_error()));
                 $resultE = mysqli_query($iConn,$sqlE) or die(myerror(__FILE__,__LINE__,mysqli_error($iConn)));
@@ -135,7 +135,7 @@ if(isset($_POST['searchReview'])) {
                         $Feedback = '';
             }
             echo '</div>';
-                echo '</div>';
+            echo '</div>';
     }
 }
 else{

@@ -23,3 +23,13 @@
 .bookText{
     font: 10px;
 }
+
+.invert {
+    filter: invert(1);
+}
+
+.invert .box, .invert input, .invert img,
+.invert hr, .invert a :not(.navbar-start),
+.invert .inv, .invert select, .invert textarea {
+    filter: invert(1);
+}

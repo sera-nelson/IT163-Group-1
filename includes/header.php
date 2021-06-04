@@ -92,9 +92,7 @@ switch($page) {
     <body class="has-background-info-light">
         <header class="has-background-info-light"> 
             <div class="columns pl-5 py-3">
-                <div class="column is-2 p-5 ml-3" id="logo" onmouseover="aniLogo()" onmouseout="unAniLogo()">
-                    <!-- <a class="logo" href="index.php"><img src="images/logo.svg" alt="The Bookshelf Logo"></a> -->
-                </div>               
+                <div class="column is-2 p-5 ml-3" id="logo" onmouseover="aniLogo()" onmouseout="unAniLogo()"></div>            
                 <div id="mynavdiv" class="column mb-4">
                     <nav class="navbar is-transparent" aria-label="main navigation">
                         <div class="navbar-brand">
@@ -124,7 +122,7 @@ switch($page) {
                                 <!--TODO: add form action for headersearch-->
                                 <?php include('headerSearch.php');?>
                                 <div class="navbar-item">
-                                    <a class="button is-warning m-3">Dark/Light Mode</a>
+                                    <a class="button is-warning m-3" id="mode">Dark Mode</a>
                                 </div>
                                 <?php include('loginHeader.php'); ?>
                             </div>
