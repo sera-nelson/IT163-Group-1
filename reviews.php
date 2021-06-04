@@ -12,11 +12,11 @@
     </div>
 
     <div class="column">
-        <div class="has-background-info-light p-5 m-3">
+        <div class="has-background-info-light p-5 m-3 box">
             <h2 class="subtitle mb-0 pt-2"><a href="NewReview.php">leave a review</a></h2>
             <p>(login required)</p>
         </div>
-        <div class="has-background-info-light p-5 m-3">
+        <div class="has-background-info-light p-5 m-3 box">
             <h2 class="subtitle mb-0 pt-2">our top rated reviews</h2>
             <!--TODO: INSERT 3 ITEMS FROM DB - 5*/?-->
         </div>

@@ -15,7 +15,7 @@
                 <!--social media icons-->
                     <ul>
                         <li><b>connect</b></li>
-                        <li><a href="mailto:info@thebookshelf.com">info@thebookshelf.com</a></li>
+                        <li><a class="inv" href="mailto:info@thebookshelf.com">info@thebookshelf.com</a></li>
                         <li>
                             <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook fa-2x" title="Facebook icon"></i></a>
                             <span class="is-sr-only">Facebook icon</span>
