@@ -1,5 +1,5 @@
 //modal and dropdown implementation tests
-window.addEventListener('load', (event) => {
+$(document).ready(function(){
     let drop = document.querySelector('.dropdown');
     drop.addEventListener('click', (event) => {
         event.stopPropagation();
@@ -30,7 +30,7 @@ window.addEventListener('load', (event) => {
             pop.classList.toggle('is-active');
         }
     });
-}); //end window onload
+}); //end doc ready
 
 
 //NEW BOOK SCRIPTS
@@ -48,7 +48,7 @@ $(document).ready(function(){
         }
         });
     });
-});
+}); //end doc ready
 
 function selectName(val) {
 $("#search-box").val(val);
@@ -72,7 +72,7 @@ $(document).ready(function(){
         }
         });
     });
-});
+}); //end doc ready
 
 function selectGenre(val) {
 $("#search-box-genre").val(val);
@@ -97,7 +97,7 @@ $(document).ready(function(){
         }
         });
     });
-});
+}); //end doc ready
 
 function selectBook(val) {
 $("#search-box-book").val(val);
@@ -111,6 +111,7 @@ $("#bookID").val(val);
 var time = 0;
 var checkTime;
 setTimer();
+
 function timer(){
     checkTime = setTimeout(setTimer, 1000);
 }
@@ -153,4 +154,20 @@ function aniLogo(){
 function unAniLogo(){ 
     var x = document.getElementById('logo');
     x.setAttribute("style", "transform: ");
+}
+
+
+//dark mode toggle
+var toggle = document.getElementById("mode");
+var body = document.body;
+toggle.addEventListener("click", modeToggle, false);
+
+function modeToggle() {
+    if(toggle.innerText === "Light Mode"){
+        toggle.innerText = "Dark Mode";
+        body.classList.toggle("invert");
+    } else {
+        toggle.innerText = "Light Mode";
+        body.classList.toggle("invert");
+    }
 }
