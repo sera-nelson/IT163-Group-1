@@ -144,6 +144,7 @@ function winPrize(){ //1 in 10 chance to win prize when entering index page
     }
 }
 
+
 var ani = null;
 function aniLogo(){ 
     var x = document.getElementById('logo');
