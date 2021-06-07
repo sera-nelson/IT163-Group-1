@@ -1,4 +1,4 @@
-        </main>
+ </main>
         <hr class="has-background-warning m-0">
         <footer class="footer has-background-info-light p-5 m-0">
             <div class="columns has-text-centered">

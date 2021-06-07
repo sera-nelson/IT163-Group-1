@@ -144,18 +144,27 @@ function winPrize(){ //1 in 10 chance to win prize when entering index page
     }
 }
 
-var w = window.innerWidth;
-var h = window.innerHeight;
 
+var ani = null;
 function aniLogo(){ 
     var x = document.getElementById('logo');
-    x.setAttribute("style", "transform: rotate(45deg);");
+    var i = 0;
+    clearInterval(ani);
+    ani = setInterval(spin, 10);
+    function spin() {
+        if (360 <= i) {
+            clearInterval(ani);
+        } else {
+            i = i + 1; 
+            x.setAttribute("style", "transform: rotate(" + i + "deg);");
+        }
+    }
 }
 function unAniLogo(){ 
     var x = document.getElementById('logo');
-    x.setAttribute("style", "transform: ");
+    clearInterval(ani);
+    x.setAttribute("style", "transform: rotate(0deg);");
 }
-
 
 //dark mode toggle
 var toggle = document.getElementById("mode");
