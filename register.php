@@ -2,10 +2,9 @@
 include('includes/server.php');
 include('includes/header.php');
 ?>
-<div class="has-background-info-light p-5 m-3">
-    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
-        <div class="columns is-centered">
-            <div class="column is-half">
+    <div class="columns is-centered">
+        <div class="column is-half has-background-info-light p-5 m-3">
+            <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
                 <fieldset>
                 <div class="field">
                     <div class="control">
@@ -57,8 +56,7 @@ include('includes/header.php');
                 </div>
                 <p class="subtitle">Already a member? <a class="inv" href="login.php">Sign In Here</a></p>
                 </fieldset>
-            </div>
+            </form>
         </div>
-    </form>
-</div>
+    </div>
 <?php include('includes/footer.php'); ?>

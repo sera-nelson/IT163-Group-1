@@ -1,6 +1,5 @@
 <?php 
     $indexParam = $_GET['param'];
-    
 ?>
 
 <form action="BookList.php" method="post" class="mb-3"> 
