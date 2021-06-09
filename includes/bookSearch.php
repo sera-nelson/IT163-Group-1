@@ -1,6 +1,5 @@
 <?php 
     $indexParam = $_GET['param'];
-    
 ?>
 
 <form action="BookList.php" method="post" class="mb-3"> 
@@ -89,6 +88,8 @@ if(isset($_POST['searchBook'])){
                         echo '</div>';
                         $Feedback = '';
                 }//while
+                echo '</div>'; //end columns
+                echo'</div>'; //end box
             }elseif($_POST['SearchParams'] == 'GenreParam'){
                 $sqlG = "SELECT b.*, a.Name, g.Genre FROM BookList b INNER JOIN AuthorList a ON b.AuthorID=a.AuthorID INNER JOIN GenreList g ON b.GenreID=g.GenreID WHERE g.Genre LIKE '%".$_POST['search']."%'"; 
                 $iConn = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) //gets the database credential info
@@ -112,6 +113,8 @@ if(isset($_POST['searchBook'])){
                         echo '</div>';
                         $Feedback = '';
                 }//while
+                echo '</div>'; //end columns
+                echo'</div>'; //end box
             }else{
                 $sqlT = "SELECT b.*, a.Name, g.Genre FROM BookList b INNER JOIN AuthorList a ON b.AuthorID=a.AuthorID INNER JOIN GenreList g ON b.GenreID=g.GenreID WHERE b.Title LIKE '".$_POST['search']."%'"; 
                 $iConn = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) //gets the database credential info
@@ -135,9 +138,9 @@ if(isset($_POST['searchBook'])){
                         echo'</div>';
                         $Feedback = '';
                 }//while
+                echo '</div>'; //end columns
+                echo'</div>'; //end box
             }//else
-            echo '</div>'; //end columns
-            echo'</div>'; //end box
         }
     }else{//if search bar is empty
          $sqlE = "SELECT b.*, a.Name, g.Genre FROM BookList b INNER JOIN AuthorList a ON b.AuthorID=a.AuthorID INNER JOIN GenreList g ON b.GenreID=g.GenreID"; 
@@ -162,9 +165,9 @@ if(isset($_POST['searchBook'])){
                         echo'</div>';
                         $Feedback = '';
             }
+            echo '</div>'; //end columns
+            echo'</div>'; //end box
     }
-    echo '</div>'; //end columns
-    echo'</div>'; //end box
 }
 else{
     include('includes/randBook.php');

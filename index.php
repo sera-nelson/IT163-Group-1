@@ -9,7 +9,7 @@ include('includes/header.php');
         <?php include('includes/randReview.php'); ?>
     </div>
     <div class="column">
-        <div class="p-5 m-3 has-background-info-light box">
+        <div class="side-home p-5 mx-3 mb-3 has-background-info-light box">
         <h2 class="subtitle mb-0 pt-2">browse the bookshelf</h2>
         <ul>
             <li><a href="BookList.php?param=AuthorParam">by author</a></li>
@@ -24,6 +24,20 @@ include('includes/header.php');
                 <li><a href="reviews.php?param=GenreParam">by genre</a></li>
                 <li><a href="reviews.php?param=TitleParam">by title</a></li>
             </ul>
+        </div>
+    </div>
+    <div class ="popup" id="popup">
+        <div class="popupSurvey">
+            <span onClick="closePopup()">&times;</span><br/>
+            <label>What is your favorite author?</label>
+            <input type="text" id="favAuthor"><br/>
+            <label>What is your favorite book?</label>
+            <input type="text" id="favBook"><br/>
+            <label>What is your favorite genre?</label>
+            <input type="text" id="favGenre"><br/>
+            <div class="control">
+                <button class="button is-warning" type="submit" value="Submit" name="popupSubmit" onClick="closePopup()">Submit</button>
+            </div>
         </div>
     </div>
 </div>

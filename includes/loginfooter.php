@@ -1,7 +1,7 @@
 <?php
 if(!isset($_SESSION['UserName'])) { ?>
-    <li><a class="inv" href="login.php">Log In</a></li>
-    <li><a class="inv" href="register.php">Register</a></li>
+    <li><a class="button is-warning my-3" href="login.php">Log In</a></li>
+    <li><a class="button is-warning" href="register.php">Register</a></li>
 <?php
 }else{
     if(isset($_SESSION['success'])): ?>
@@ -17,7 +17,7 @@ if(!isset($_SESSION['UserName'])) { ?>
 
     <div class="error success">
         <?php if(isset($_SESSION['UserName'])): ?>
-            <li><a class="inv" href="index.php?logout='1' ">Log out</a></li>
+            <li><a class="button is-warning" href="index.php?logout='1'">Log Out</a></li>
         <?php endif ?>
     </div>
 <?php } ?>

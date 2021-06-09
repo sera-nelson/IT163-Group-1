@@ -1,5 +1,6 @@
- </main>
-        <hr class="has-background-warning m-0">
+</main>
+    </div> <!--end content div -->    
+    <hr class="has-background-warning m-0">
         <footer class="footer has-background-info-light p-5 m-0">
             <div class="columns has-text-centered">
                 <div class="column">
@@ -29,15 +30,18 @@
                             <span class="is-sr-only">Twitter icon</span>
                         </li>
                     </ul>
+                    <div onload="setTimer()">
+                        <p id="timer">You have been on this page for 0 seconds!</p>
+                    </div>
                 </div>
                 <div class="column">
                     <ul>
                         <li><b>account</b></li>
                         <?php include 'includes/loginfooter.php'; ?>
-                        <div onload="setTimer()">
-                            <p id="timer">You have been on this page for 0 seconds!</p>
-                        </div>
                     </ul>
+                </div>
+                <div class="column">
+                    <button class="button is-warning" type="submit" value="Submit" name="searchBook" onClick="popupReset()">Reset Popup</button>
                 </div>
             </div> <!-- end columns div -->
         </footer>
