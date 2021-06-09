@@ -9,7 +9,7 @@ include('includes/header.php');
         <?php include('includes/randReview.php'); ?>
     </div>
     <div class="column">
-        <div class="p-5 m-3 has-background-info-light box">
+        <div class="side-home p-5 mx-3 mb-3 has-background-info-light box">
         <h2 class="subtitle mb-0 pt-2">browse the bookshelf</h2>
         <ul>
             <li><a href="BookList.php?param=AuthorParam">by author</a></li>

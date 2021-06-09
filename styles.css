@@ -8,6 +8,21 @@
     min-height: 200px;
 }
 
+.side {margin-top: 11rem;}
+
+.side-home {margin-top: 5rem;}
+
+html, body {height: 100%;}
+body {
+    display: flex;
+    flex-direction: column;
+}
+.all-content {
+    flex: 1 0 auto;
+    background-color: white;
+}
+footer {flex-shrink: 0;}
+
 .cent {
     margin: auto;
 }
@@ -28,8 +43,8 @@
     filter: invert(1);
 }
 
-.invert .box, .invert input, .invert img,
-.invert hr, .invert a :not(.navbar-start),
-.invert .inv, .invert select, .invert textarea {
+.invert .box, .invert input, .invert hr,
+.invert a :not(.navbar-start), .invert .inv,
+.invert select, .invert textarea {
     filter: invert(1);
 }

@@ -167,7 +167,7 @@ function unAniLogo(){
 }
 
 //dark mode toggle
-var toggle = document.getElementById("mode");
+var toggle = document.getElementById('mode');
 var body = document.body;
 toggle.addEventListener("click", modeToggle, false);
 

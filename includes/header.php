@@ -90,6 +90,7 @@ switch($page) {
         <link rel="stylesheet" type="text/css" href="styles.css">
     </head>
     <body class="has-background-info-light">
+        <div class="all-content">
         <header class="has-background-info-light"> 
             <div class="columns pl-5 py-3">
                 <div class="column is-2 p-5 ml-3" id="logo" onmouseover="aniLogo()" onmouseout="unAniLogo()"></div>            
@@ -119,7 +120,6 @@ switch($page) {
                                 " href="reviews.php">Reviews</a>
                             </div>
                             <div class="navbar-end">
-                                <!--TODO: add form action for headersearch-->
                                 <?php include('headerSearch.php');?>
                                 <div class="navbar-item">
                                     <a class="button is-warning m-3" id="mode">Dark Mode</a>
