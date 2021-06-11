@@ -1,6 +1,7 @@
 <?php
 include('includes/config.php');
 include('includes/header.php');
+$_SESSION['param'] = $indexParam;
 ?>
 <div class="columns is-centered">
     <div class="column is-two-thirds p-5 m-3 has-background-white">
@@ -23,6 +24,15 @@ include('includes/header.php');
                 <li><a href="reviews.php?param=AuthorParam">by author</a></li>
                 <li><a href="reviews.php?param=GenreParam">by genre</a></li>
                 <li><a href="reviews.php?param=TitleParam">by title</a></li>
+            </ul>
+        </div>
+        <div class="p-5 m-3 has-background-info-light box modalChange" id="popupSearchBox">
+            <h2 class="subtitle mb-0 pt-2">reviews that might interest you</h2>
+            <ul>
+                <li><a href="javascript:modalAuthSearch();" id="authorPopup"></a></li>
+                <li><a href="javascript:modalGenreSearch();" id="genrePopup"></a></li>
+                <li><a href="javascript:modalTitleSearch();" id="titlePopup"></a></li>
+                <input type="hidden" id="popupSearch" name="popupSearch" value="">
             </ul>
         </div>
     </div>

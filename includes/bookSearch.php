@@ -62,7 +62,7 @@ if(isset($headSearch)){
 }
 
 
-if(isset($_POST['searchBook'])){
+else if(isset($_POST['searchBook'])){
     if (!empty($_REQUEST['search'])) {
         if(isset($_POST['SearchParams'])){
             if($_POST['SearchParams'] == 'AuthorParam'){
