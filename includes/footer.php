@@ -40,6 +40,9 @@
                         <?php include 'includes/loginfooter.php'; ?>
                     </ul>
                 </div>
+                <div class="column">
+                    <button class="button is-warning" type="submit" value="Submit" name="searchBook" onClick="popupReset()">Reset Popup</button>
+                </div>
             </div> <!-- end columns div -->
         </footer>
         <!--load Jquery-->

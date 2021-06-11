@@ -166,17 +166,58 @@ function unAniLogo(){
     x.setAttribute("style", "transform: rotate(0deg);");
 }
 
+//modal popup checker
+$(document).ready(function(){
+    var check = cookieCheck.includes("noPopup");
+    if (check){
+        document.cookie = "popupCheck = noPopup";
+        cookieCheck = decodeURIComponent(document.cookie);
+    }
+    else{
+        modalPopup();
+    }
+});
+
+function modalPopup(){
+    var x = document.getElementById('popup');
+    x.setAttribute("style", "display: block;");
+    document.cookie = "popupCheck = noPopup";
+    cookieCheck = decodeURIComponent(document.cookie);
+}
+function closePopup(){
+    var x = document.getElementById('popup');
+    x.setAttribute("style", "display: hidden;");
+    document.cookie = "popupCheck = noPopup";
+    cookieCheck = decodeURIComponent(document.cookie);
+}
+function popupReset(){
+    document.cookie = "popupCheck = yesPopup";
+    cookieCheck = decodeURIComponent(document.cookie);
+}
+
 //dark mode toggle
 var toggle = document.getElementById('mode');
 var body = document.body;
 toggle.addEventListener("click", modeToggle, false);
 
+var cookieCheck = decodeURIComponent(document.cookie);
+$(document).ready(function(){
+    var check = cookieCheck.includes("Dark");
+    if (check){
+        modeToggle();
+    }
+});
+
 function modeToggle() {
     if(toggle.innerText === "Light Mode"){
         toggle.innerText = "Dark Mode";
         body.classList.toggle("invert");
+        document.cookie = "modeCookie = Light"
+        cookieCheck = decodeURIComponent(document.cookie);
     } else {
         toggle.innerText = "Light Mode";
         body.classList.toggle("invert");
+        document.cookie = "modeCookie = Dark"
+        cookieCheck = decodeURIComponent(document.cookie);
     }
 }

@@ -26,6 +26,20 @@ include('includes/header.php');
             </ul>
         </div>
     </div>
+    <div class ="popup" id="popup">
+        <div class="popupSurvey">
+            <span onClick="closePopup()">&times;</span><br/>
+            <label>What is your favorite author?</label>
+            <input type="text" id="favAuthor"><br/>
+            <label>What is your favorite book?</label>
+            <input type="text" id="favBook"><br/>
+            <label>What is your favorite genre?</label>
+            <input type="text" id="favGenre"><br/>
+            <div class="control">
+                <button class="button is-warning" type="submit" value="Submit" name="popupSubmit" onClick="closePopup()">Submit</button>
+            </div>
+        </div>
+    </div>
 </div>
 <input type="hidden" id="ptimeTest">
 <?php include('includes/footer.php');?>

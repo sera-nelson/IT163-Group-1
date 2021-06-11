@@ -48,3 +48,17 @@ footer {flex-shrink: 0;}
 .invert select, .invert textarea {
     filter: invert(1);
 }
+
+.popup{
+    display: none;
+    position: fixed;
+}
+
+.popupSurvey{
+    background-color: white;
+    border: 1px solid black
+}
+
+.stickyBook{
+    z-index: 2;
+}
