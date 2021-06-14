@@ -189,10 +189,47 @@ function closePopup(){
     x.setAttribute("style", "display: hidden;");
     document.cookie = "popupCheck = noPopup";
     cookieCheck = decodeURIComponent(document.cookie);
+    modalBox();
 }
 function popupReset(){
     document.cookie = "popupCheck = yesPopup";
     cookieCheck = decodeURIComponent(document.cookie);
+}
+
+function modalBox(){
+    var favAuthor = document.getElementById('favAuthor').value;
+    var favGenre = document.getElementById('favGenre').value;
+    var favBook = document.getElementById('favBook').value;
+    
+    var authorPopup = document.getElementById('authorPopup');
+    var genrePopup = document.getElementById('genrePopup');
+    var titlePopup = document.getElementById('titlePopup');
+    
+    authorPopup.innerHTML = "books by " + favAuthor;
+    genrePopup.innerHTML = favGenre + " books";
+    titlePopup.innerHTML = "reviews about " + favBook;
+    
+    var x = document.getElementById('popupSearchBox');
+    x.setAttribute("style", "display: block;");
+}
+
+function modalAuthSearch(){
+    var favAuthor = document.getElementById('favAuthor').value;
+    var x = document.getElementById('popupSearch');
+    x.setAttribute("value", favAuthor);
+    window.location.href = 'reviews.php?param=AuthorParam&searchBar=' + favAuthor;
+}
+function modalGenreSearch(){
+    var favGenre = document.getElementById('favGenre').value;
+    var x = document.getElementById('popupSearch');
+    x.setAttribute("value", favGenre);
+    window.location.href = 'reviews.php?param=GenreParam&searchBar=' + favGenre;
+}
+function modalTitleSearch(){
+    var favBook = document.getElementById('favBook').value;
+    var x = document.getElementById('popupSearch');
+    x.setAttribute("value", favBook);
+    window.location.href = 'reviews.php?param=TitleParam&searchBar=' + favBook;
 }
 
 //dark mode toggle

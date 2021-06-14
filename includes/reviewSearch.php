@@ -1,5 +1,6 @@
 <?php 
     $indexParam = $_GET['param'];
+    $searchBar = $_GET['searchBar'];
 ?>
 
 <form action="reviews.php" method="post" class="mb-3">
@@ -16,7 +17,7 @@
             <div class="control">
                 <div class="select">
                     <select name="SearchParams">
-                        <option value="AllParam" <?php echo (isset($_POST['SearchParams']) && $_POST['SearchParams'] == 'AllParam' || $indexParam == 'AllParam') ? 'selected' : ''; ?>>Search Options</option>
+                        <option value="AllParam" <?php echo (isset($_POST['SearchParams']) && $_POST['SearchParams'] == 'AllParam' || $indexParam == 'AllParam') ? 'selected' : ''; ?>><?php echo $searchBar; ?></option>
                         <option value="TitleParam" <?php echo (isset($_POST['SearchParams']) && $_POST['SearchParams'] == 'TitleParam' || $indexParam == 'TitleParam') ? 'selected' : ''; ?>>Title</option>
                         <option value="AuthorParam" <?php echo (isset($_POST['SearchParams']) && $_POST['SearchParams'] == 'AuthorParam' || $indexParam == 'AuthorParam') ? 'selected' : ''; ?>>Author</option>
                         <option value="GenreParam" <?php echo (isset($_POST['SearchParams']) && $_POST['SearchParams'] == 'GenreParam' || $indexParam == 'GenreParam') ? 'selected' : ''; ?>>Genre</option>
@@ -30,8 +31,39 @@
         </div>
 </form>
 
+
+
 <?php
-if(isset($_POST['searchReview'])) {
+
+if(isset($searchBar)){
+        $sqlSB = "SELECT r.*, b.*, a.Name, u.UserName, g.Genre FROM ReviewList r INNER JOIN BookList b ON r.BookID=b.BookID INNER JOIN AuthorList a ON b.AuthorID=a.AuthorID INNER JOIN GenreList g ON b.GenreID=g.GenreID INNER JOIN Users u ON r.UserID=u.UserID WHERE b.Title LIKE '%".$searchBar."%' OR g.Genre LIKE '%".$searchBar."%' OR a.Name LIKE '%".$searchBar."%'";
+        $iConn = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) //gets the database credential info
+            or die(myerror(__FILE__,__LINE__,mysqli_connect_error()));
+        $resultSB = mysqli_query($iConn,$sqlSB) or die(myerror(__FILE__,__LINE__,mysqli_error($iConn)));
+        echo '<div class="box">';
+        echo '<div class="columns is-multiline">';
+        while($rowSB = mysqli_fetch_array($resultSB)) {
+            echo '<div class="column is-one-third">';
+                $coverImg = $rowSB['CoverPic'];
+                if($coverImg == 'NULL'){
+                    echo '<img src="images/noImg.png" alt="'.$rowSB['Title'].'" class="bookCovers">';
+                }else{
+                    echo '<img src="'.$rowSB['CoverPic'].'" alt="'.$rowSB['Title'].'" class="bookCovers">';
+                }
+                echo '<ul>';
+                echo '<li class="bookText"><b>Title:</b> '.$rowSB['Title'].' by '.$rowSB['Name'].' </li>';
+                echo '<li class="bookText"><b>Reviewer:</b> '.$rowSB['UserName'].' </li>';
+                echo '<li class="bookText"><b>Rating:</b> '.$rowSB['Rating'].' </li>';
+                echo '<li class="bookText"><b>Review:</b> '.$rowSB['Review'].' </li>';
+                echo '</ul>';
+                echo '</div>';
+                $Feedback = '';
+        }
+        echo '</div>'; //end columns
+        echo'</div>'; //end box
+}
+
+else if(isset($_POST['searchReview'])) {
     if(!empty($_REQUEST['search'])) {
         if(isset($_POST['SearchParams'])){
             if($_POST['SearchParams'] == 'AuthorParam'){
