@@ -10,7 +10,7 @@ $(document).ready(function(){
     let pop = document.querySelector('.modal');
     let close = document.querySelector('.delete');
     let outside = document.querySelector('.modal-background');
-    let confirm=document.querySelector('.is-success');
+    let confirm=document.querySelector('#submitModal');
     let cancel=document.querySelector('.is-warning');
 
     modal.addEventListener('click', (event) => {
@@ -168,70 +168,100 @@ function unAniLogo(){
 
 //modal popup checker
 $(document).ready(function(){
-    var check = cookieCheck.includes("noPopup");
-    if (check){
+    //select modal DOM elements
+    let modal = document.querySelector('.modal-trigger');
+    let pop = document.querySelector('.modal');
+    let close = document.querySelector('.delete');
+    let outside = document.querySelector('.modal-background');
+    let confirm=document.querySelector('#submitModal');
+
+    //show/hide modal on click
+    modal.addEventListener('click', (event) => {
+        pop.classList.toggle('is-active');
+    });
+    close.addEventListener('click', (event) => {
+        pop.classList.toggle('is-active');
+        closePopup();
+    });
+    confirm.addEventListener('click', (event) => {
+        pop.classList.toggle('is-active');
+        closePopup();
+    });
+    window.addEventListener('click', (event) => {
+        if(event.target === outside){
+            pop.classList.toggle('is-active');
+            closePopup();
+        }
+    });
+
+    //check if popup has happened before using cookies
+    let check = cookieCheck.includes("noPopup");
+    if(check){
         document.cookie = "popupCheck = noPopup";
         cookieCheck = decodeURIComponent(document.cookie);
-    }
-    else{
+    } else {
         modalPopup();
     }
-});
+}); //end doc ready
 
 function modalPopup(){
-    var x = document.getElementById('popup');
-    x.setAttribute("style", "display: block;");
+    //make modal visible, set cookies to prevent more popups
+    modal.classList.toggle('is-active');
     document.cookie = "popupCheck = noPopup";
     cookieCheck = decodeURIComponent(document.cookie);
 }
+
 function closePopup(){
-    var x = document.getElementById('popup');
-    x.setAttribute("style", "display: hidden;");
-    document.cookie = "popupCheck = noPopup";
+    //set cookies to prevent more popups
+    document.cookie="popupCheck = noPopup";
     cookieCheck = decodeURIComponent(document.cookie);
     modalBox();
 }
-function popupReset(){
-    document.cookie = "popupCheck = yesPopup";
-    cookieCheck = decodeURIComponent(document.cookie);
-}
 
 function modalBox(){
-    var favAuthor = document.getElementById('favAuthor').value;
-    var favGenre = document.getElementById('favGenre').value;
-    var favBook = document.getElementById('favBook').value;
-    
-    var authorPopup = document.getElementById('authorPopup');
-    var genrePopup = document.getElementById('genrePopup');
-    var titlePopup = document.getElementById('titlePopup');
-    
+    //value of modal inputs
+    let favAuthor = document.getElementById('favAuthor').value;
+    let favGenre = document.getElementById('favGenre').value;
+    let favBook = document.getElementById('favBook').value;
+    //div of searches to modal inputs
+    let authorPopup = document.getElementById('authorPopup');
+    let genrePopup = document.getElementById('genrePopup');
+    let titlePopup = document.getElementById('titlePopup');
+    //set div content to search=modal input
     authorPopup.innerHTML = "books by " + favAuthor;
     genrePopup.innerHTML = favGenre + " books";
     titlePopup.innerHTML = "reviews about " + favBook;
-    
-    var x = document.getElementById('popupSearchBox');
+    //set div to be visible
+    let x = document.getElementById('popupSearchBox');
     x.setAttribute("style", "display: block;");
 }
 
 function modalAuthSearch(){
-    var favAuthor = document.getElementById('favAuthor').value;
-    var x = document.getElementById('popupSearch');
+    //search by favorite author
+    let favAuthor = document.getElementById('favAuthor').value;
+    let x = document.getElementById('popupSearch');
     x.setAttribute("value", favAuthor);
-    window.location.href = 'reviews.php?param=AuthorParam&searchBar=' + favAuthor;
+    window.location.href='reviews.php?param=AuthorParam&searchBar=' + favAuthor;
 }
 function modalGenreSearch(){
-    var favGenre = document.getElementById('favGenre').value;
-    var x = document.getElementById('popupSearch');
+    //search by favorite genre
+    let favGenre = document.getElementById('favGenre').value;
+    let x = document.getElementById('popupSearch');
     x.setAttribute("value", favGenre);
-    window.location.href = 'reviews.php?param=GenreParam&searchBar=' + favGenre;
+    window.location.href='reviews.php?param=GenreParam&searchBar=' + favGenre;
 }
 function modalTitleSearch(){
-    var favBook = document.getElementById('favBook').value;
-    var x = document.getElementById('popupSearch');
+    //search by favorite title
+    let favBook = document.getElementById('favBook').value;
+    let x = document.getElementById('popupSearch');
     x.setAttribute("value", favBook);
-    window.location.href = 'reviews.php?param=TitleParam&searchBar=' + favBook;
+    window.location.href='reviews.php?param=TitleParam&searchBar=' + favBook;
 }
-
+//reset cookies for testing
+function popupReset(){
+    document.cookie = "popupCheck = yesPopup";
+    cookieCheck = decodeURIComponent(document.cookie);
+}
 //dark mode toggle
 var toggle = document.getElementById('mode');
 var body = document.body;

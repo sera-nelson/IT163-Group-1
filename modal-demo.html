@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Modal Demo</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="./styles.css">
+    </head>
+    <body>
+        <div class="has-background-info-light p-5 m-3 box" id="popupSearchBox">
+            <h2 class="subtitle mb-0 pt-2">reviews that might interest you</h2>
+            <ul>
+                <li><a href="javascript:modalAuthSearch();" id="authorPopup"></a></li>
+                <li><a href="javascript:modalGenreSearch();" id="genrePopup"></a></li>
+                <li><a href="javascript:modalTitleSearch();" id="titlePopup"></a></li>
+                <input type="hidden" id="popupSearch" name="popupSearch" value="">
+            </ul>
+        </div>
+        <button class="button is-warning modal-trigger">Modal</button>
+        <div class="modal">
+            <div class="modal-background"></div>
+            <div class="modal-card has-text-centered">
+                <header class="modal-card-head has-background-info-light">
+                    <p class="modal-card-title">Welcome to The Bookshelf!</p>
+                    <button class="delete" aria-label="close"></button>
+                </header>
+                <section class="modal-card-body">
+                    <div class="field">
+                        <label class="label" for="favAuthor">Who is your favorite author?</label>
+                        <div class="control">
+                            <input type="text" name="favAuthor" id="favAuthor"><br/>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label" for="favBook">What is your favorite book?</label>
+                        <div class="control">
+                            <input type="text" name="favBook" id="favBook"><br/>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label" for="favGenre">What is your favorite genre?</label>
+                        <div class="control">
+                            <input type="text" name="favGenre" id="favGenre"><br/>
+                        </div>
+                    </div>
+                </section>
+                <footer class="modal-card-foot has-background-info-light">
+                    <div class="field width-full">
+                        <div class="control">
+                            <button id="submitModal" class="button is-warning" type="submit" value="submit">Submit</button>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <script
+			  src="https://code.jquery.com/jquery-3.6.0.min.js"
+			  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+			  crossorigin="anonymous">
+        </script>
+        <script>
+            $(document).ready(function(){
+                let modal = document.querySelector('.modal-trigger');
+                let pop = document.querySelector('.modal');
+                let close = document.querySelector('.delete');
+                let outside = document.querySelector('.modal-background');
+                let confirm=document.querySelector('#submitModal');
+
+                modal.addEventListener('click', (event) => {
+                    pop.classList.toggle('is-active');
+                });
+                close.addEventListener('click', (event) => {
+                    pop.classList.toggle('is-active');
+                    closePopup();
+                });
+                confirm.addEventListener('click', (event) => {
+                    pop.classList.toggle('is-active');
+                    closePopup();
+                });
+                window.addEventListener('click', (event) => {
+                    if(event.target === outside){
+                        pop.classList.toggle('is-active');
+                        closePopup();
+                    }
+                });
+
+                let check = cookieCheck.includes("noPopup");
+                if(check){
+                    document.cookie = "popupCheck = noPopup";
+                    cookieCheck = decodeURIComponent(document.cookie);
+                } else {
+                    modalPopup();
+                }
+            }); //end doc ready
+
+            function modalPopup(){
+                modal.classList.toggle('is-active');
+                document.cookie = "popupCheck = noPopup";
+                cookieCheck = decodeURIComponent(document.cookie);
+            }
+
+            function closePopup(){
+                document.cookie="popupCheck = noPopup";
+                cookieCheck = decodeURIComponent(document.cookie);
+                modalBox();
+            }
+
+            function modalBox(){
+                //value of modal inputs
+                let favAuthor = document.getElementById('favAuthor').value;
+                let favGenre = document.getElementById('favGenre').value;
+                let favBook = document.getElementById('favBook').value;
+                //div of searches to modal inputs
+                let authorPopup = document.getElementById('authorPopup');
+                let genrePopup = document.getElementById('genrePopup');
+                let titlePopup = document.getElementById('titlePopup');
+                //set div content to search=modal input
+                authorPopup.innerHTML = "books by " + favAuthor;
+                genrePopup.innerHTML = favGenre + " books";
+                titlePopup.innerHTML = "reviews about " + favBook;
+                //set div to be visible
+                let x = document.getElementById('popupSearchBox');
+                x.setAttribute("style", "display: block;");
+            }
+
+            function modalAuthSearch(){
+                //search by favorite author
+                let favAuthor = document.getElementById('favAuthor').value;
+                let x = document.getElementById('popupSearch');
+                x.setAttribute("value", favAuthor);
+                window.location.href='reviews.php?param=AuthorParam&searchBar=' + favAuthor;
+            }
+            function modalGenreSearch(){
+                //search by favorite genre
+                let favGenre = document.getElementById('favGenre').value;
+                let x = document.getElementById('popupSearch');
+                x.setAttribute("value", favGenre);
+                window.location.href='reviews.php?param=GenreParam&searchBar=' + favGenre;
+            }
+            function modalTitleSearch(){
+                //search by favorite title
+                let favBook = document.getElementById('favBook').value;
+                let x = document.getElementById('popupSearch');
+                x.setAttribute("value", favBook);
+                window.location.href='reviews.php?param=TitleParam&searchBar=' + favBook;
+            }
+        </script>
+    </body>
+</html>

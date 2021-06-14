@@ -25,8 +25,9 @@ $_SESSION['param'] = $indexParam;
                 <li><a href="reviews.php?param=GenreParam">by genre</a></li>
                 <li><a href="reviews.php?param=TitleParam">by title</a></li>
             </ul>
+            <button class="button is-warning modal-trigger">Modal</button>
         </div>
-        <div class="p-5 m-3 has-background-info-light box modalChange" id="popupSearchBox">
+        <div class="has-background-info-light p-5 m-3 box" id="popupSearchBox">
             <h2 class="subtitle mb-0 pt-2">reviews that might interest you</h2>
             <ul>
                 <li><a href="javascript:modalAuthSearch();" id="authorPopup"></a></li>
@@ -36,20 +37,42 @@ $_SESSION['param'] = $indexParam;
             </ul>
         </div>
     </div>
-    <div class ="popup" id="popup">
-        <div class="popupSurvey">
-            <span onClick="closePopup()">&times;</span><br/>
-            <label>What is your favorite author?</label>
-            <input type="text" id="favAuthor"><br/>
-            <label>What is your favorite book?</label>
-            <input type="text" id="favBook"><br/>
-            <label>What is your favorite genre?</label>
-            <input type="text" id="favGenre"><br/>
-            <div class="control">
-                <button class="button is-warning" type="submit" value="Submit" name="popupSubmit" onClick="closePopup()">Submit</button>
+    <div class="modal">
+            <div class="modal-background"></div>
+            <div class="modal-card has-text-centered">
+                <header class="modal-card-head has-background-info-light">
+                    <p class="modal-card-title">Welcome to The Bookshelf!</p>
+                    <button class="delete" aria-label="close"></button>
+                </header>
+                <section class="modal-card-body">
+                    <div class="field">
+                        <label class="label" for="favAuthor">Who is your favorite author?</label>
+                        <div class="control">
+                            <input type="text" name="favAuthor" id="favAuthor"><br/>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label" for="favBook">What is your favorite book?</label>
+                        <div class="control">
+                            <input type="text" name="favBook" id="favBook"><br/>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label" for="favGenre">What is your favorite genre?</label>
+                        <div class="control">
+                            <input type="text" name="favGenre" id="favGenre"><br/>
+                        </div>
+                    </div>
+                </section>
+                <footer class="modal-card-foot has-background-info-light">
+                    <div class="field width-full">
+                        <div class="control">
+                            <button id="submitModal" class="button is-warning" type="submit" value="submit">Submit</button>
+                        </div>
+                    </div>
+                </footer>
             </div>
         </div>
-    </div>
 </div>
 <input type="hidden" id="ptimeTest">
 <?php include('includes/footer.php');?>

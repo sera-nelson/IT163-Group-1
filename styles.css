@@ -59,6 +59,14 @@ footer {flex-shrink: 0;}
     border: 1px solid black
 }
 
-.modalChange{
+#popupSearchBox {
     display: none;
+}
+
+.width-full {
+    width: 100%;
+}
+
+.modal-trigger {
+    width: 125px;
 }

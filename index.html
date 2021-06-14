@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="./styles.css">
     </head>
     <body>
         <section class="hero is-success is-halfheight">
@@ -26,23 +27,44 @@
                 <button class="button is-primary">Button</button>
             </div>
 
-            <button class="button is-light modal-trigger">Modal</button>
+            <button class="button is-warning modal-trigger">Modal</button>
             <div class="modal">
                 <div class="modal-background"></div>
-                <div class="modal-card">
-                    <header class="modal-card-head">
-                        <p class="modal-card-title">Title</p>
+                <div class="modal-card has-text-centered">
+                    <header class="modal-card-head has-background-info-light">
+                        <p class="modal-card-title">Welcome to The Bookshelf!</p>
                         <button class="delete" aria-label="close"></button>
                     </header>
                     <section class="modal-card-body">
-                        <p>Some text...</p>
+                        <div class="field">
+                            <label class="label" for="favAuthor">Who is your favorite author?</label>
+                            <div class="control">
+                                <input type="text" name="favAuthor" id="favAuthor"><br/>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label" for="favBook">What is your favorite book?</label>
+                            <div class="control">
+                                <input type="text" name="favBook" id="favBook"><br/>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label" for="favGenre">What is your favorite genre?</label>
+                            <div class="control">
+                                <input type="text" name="favGenre" id="favGenre"><br/>
+                            </div>
+                        </div>
                     </section>
-                    <footer class="modal-card-foot">
-                        <button class="button is-warning">No</button>
-                        <button class="button is-success">Yes</button>
+                    <footer class="modal-card-foot has-background-info-light">
+                        <div class="field width-full">
+                            <div class="control">
+                                <button id="submitModal" class="button is-warning" type="submit" value="submit">Submit</button>
+                            </div>
+                        </div>
                     </footer>
                 </div>
             </div>
+
 
             <div class="dropdown">
                 <div class="dropdown-trigger">
@@ -66,36 +88,50 @@
 
 
         <script>
-            let drop = document.querySelector('.dropdown');
-            drop.addEventListener('click', (event) => {
-                event.stopPropagation();
-                drop.classList.toggle('is-active');
-            });
+            $(document).ready(function(){
+                let drop = document.querySelector('.dropdown');
+                drop.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    drop.classList.toggle('is-active');
+                });
 
-            let modal = document.querySelector('.modal-trigger');
-            let pop = document.querySelector('.modal');
-            let close = document.querySelector('.delete');
-            let outside = document.querySelector('.modal-background');
-            let confirm=document.querySelector('.is-success');
-            let cancel=document.querySelector('.is-warning');
+                let modal = document.querySelector('.modal-trigger');
+                let pop = document.querySelector('.modal');
+                let close = document.querySelector('.delete');
+                let outside = document.querySelector('.modal-background');
+                let confirm=document.querySelector('#submitModal');
 
-            modal.addEventListener('click', (event) => {
-                pop.classList.toggle('is-active');
-            });
-            close.addEventListener('click', (event) => {
-                pop.classList.toggle('is-active');
-            });
-            confirm.addEventListener('click', (event) => {
-                pop.classList.toggle('is-active');
-            });
-            cancel.addEventListener('click', (event) => {
-                pop.classList.toggle('is-active');
-            });
-            window.addEventListener('click', (event) => {
-                if(event.target === outside){
+                modal.addEventListener('click', (event) => {
                     pop.classList.toggle('is-active');
+                });
+                close.addEventListener('click', (event) => {
+                    pop.classList.toggle('is-active');
+                });
+                confirm.addEventListener('click', (event) => {
+                    pop.classList.toggle('is-active');
+                });
+                window.addEventListener('click', (event) => {
+                    if(event.target === outside){
+                        pop.classList.toggle('is-active');
+                    }
+                });
+
+                let check = cookieCheck.includes("noPopup");
+                if(check){
+                    document.cookie = "popupCheck = noPopup";
+                    cookieCheck = decodeURIComponent(document.cookie);
+                } else {
+                    modalPopup();
                 }
-            });
+            }); //end doc ready
+
+            function modalPopup(){
+                modal.classList.toggle('is-active');
+                document.cookie = "popupCheck = noPopup";
+                cookieCheck = decodeURIComponent(document.cookie);
+            }
+
+            
         </script>
     </body>
 </html>
