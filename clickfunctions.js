@@ -202,14 +202,15 @@ $(document).ready(function(){
     } else {
         modalPopup();
     }
-}); //end doc ready
 
-function modalPopup(){
-    //make modal visible, set cookies to prevent more popups
-    modal.classList.toggle('is-active');
-    document.cookie = "popupCheck = noPopup";
-    cookieCheck = decodeURIComponent(document.cookie);
-}
+
+    function modalPopup(){
+        //make modal visible, set cookies to prevent more popups
+        pop.classList.toggle('is-active');
+        document.cookie = "popupCheck = noPopup";
+        cookieCheck = decodeURIComponent(document.cookie);
+    }
+}); //end doc ready
 
 function closePopup(){
     //set cookies to prevent more popups
