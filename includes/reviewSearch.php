@@ -17,7 +17,7 @@
             <div class="control">
                 <div class="select">
                     <select name="SearchParams">
-                        <option value="AllParam" <?php echo (isset($_POST['SearchParams']) && $_POST['SearchParams'] == 'AllParam' || $indexParam == 'AllParam') ? 'selected' : ''; ?>><?php echo $searchBar; ?></option>
+                        <option value="AllParam" <?php echo (isset($_POST['SearchParams']) && $_POST['SearchParams'] == 'AllParam' || $indexParam == 'AllParam') ? 'selected' : ''; ?>>Search Options</option>
                         <option value="TitleParam" <?php echo (isset($_POST['SearchParams']) && $_POST['SearchParams'] == 'TitleParam' || $indexParam == 'TitleParam') ? 'selected' : ''; ?>>Title</option>
                         <option value="AuthorParam" <?php echo (isset($_POST['SearchParams']) && $_POST['SearchParams'] == 'AuthorParam' || $indexParam == 'AuthorParam') ? 'selected' : ''; ?>>Author</option>
                         <option value="GenreParam" <?php echo (isset($_POST['SearchParams']) && $_POST['SearchParams'] == 'GenreParam' || $indexParam == 'GenreParam') ? 'selected' : ''; ?>>Genre</option>
